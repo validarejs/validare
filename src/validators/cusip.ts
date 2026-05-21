@@ -5,10 +5,9 @@ export const cusip: ValidatorFactory = () => ({
     if (input.value === "") return { valid: true };
     const value = input.value.toUpperCase();
     // O and I are not allowed
-    if (!/^[0123456789ABCDEFGHJKLMNPQRSTUVWXYZ*@#]{9}$/.test(value))
-      return { valid: false };
-    const chars = value.split("");
-    const lastChar = chars.pop()!;
+    if (!/^[0123456789ABCDEFGHJKLMNPQRSTUVWXYZ*@#]{9}$/.test(value)) return { valid: false };
+    const lastChar = value[value.length - 1];
+    const chars = value.slice(0, 8).split("");
     const converted = chars.map((c) => {
       const code = c.charCodeAt(0);
       if (c === "*") return 36;

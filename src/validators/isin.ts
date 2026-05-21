@@ -32,9 +32,7 @@ export const isin: ValidatorFactory = () => ({
     const group = n % 2 !== 0 ? 0 : 1;
     let digits = "";
     for (let i = 0; i < n; i++) {
-      digits += (
-        Number.parseInt(converted[i], 10) * (i % 2 === group ? 2 : 1)
-      ).toString();
+      digits += (Number.parseInt(converted[i], 10) * (i % 2 === group ? 2 : 1)).toString();
     }
 
     let sum = 0;

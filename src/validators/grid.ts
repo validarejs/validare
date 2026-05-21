@@ -7,9 +7,7 @@ function mod37And36(value: string): boolean {
   let check = Math.floor(modulus / 2);
   for (let i = 0; i < value.length; i++) {
     check =
-      ((((check || modulus) * 2) % (modulus + 1)) +
-        ALPHABET.indexOf(value.charAt(i))) %
-      modulus;
+      ((((check || modulus) * 2) % (modulus + 1)) + ALPHABET.indexOf(value.charAt(i))) % modulus;
   }
   return check === 1;
 }
@@ -19,9 +17,7 @@ export const grid: ValidatorFactory = () => ({
     if (input.value === "") return { valid: true };
     const v = input.value.toUpperCase();
     if (
-      !/^[GRID:]*([0-9A-Z]{2})[-\s]*([0-9A-Z]{5})[-\s]*([0-9A-Z]{10})[-\s]*([0-9A-Z]{1})$/g.test(
-        v,
-      )
+      !/^(GRID:)?([0-9A-Z]{2})[-\s]*([0-9A-Z]{5})[-\s]*([0-9A-Z]{10})[-\s]*([0-9A-Z]{1})$/.test(v)
     ) {
       return { valid: false };
     }
