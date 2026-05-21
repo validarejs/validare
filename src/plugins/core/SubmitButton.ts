@@ -3,6 +3,7 @@ import { Plugin } from '../../core/Plugin';
 export interface SubmitButtonOptions {
   /** CSS selector for submit button(s). Defaults to [type="submit"]. */
   selector?: string;
+  [key: string]: unknown;
 }
 
 export class SubmitButton extends Plugin<SubmitButtonOptions> {

@@ -4,6 +4,7 @@ import type { ElementValidatedPayload } from '../../core/types';
 export interface Bootstrap5Options {
   validClass?: string;
   invalidClass?: string;
+  [key: string]: unknown;
 }
 
 export class Bootstrap5 extends Plugin<Bootstrap5Options> {

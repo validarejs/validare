@@ -6,6 +6,7 @@ export interface TailwindOptions {
   validClass?: string;
   /** Space-separated Tailwind classes for invalid state */
   invalidClass?: string;
+  [key: string]: unknown;
 }
 
 export class Tailwind extends Plugin<TailwindOptions> {

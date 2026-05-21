@@ -5,6 +5,7 @@ export interface IconOptions {
   valid?: string;
   invalid?: string;
   validating?: string;
+  [key: string]: unknown;
 }
 
 export class Icon extends Plugin<IconOptions> {

@@ -3,6 +3,7 @@ import type { ValidationStatus } from '../../core/types';
 
 export interface SequenceOptions {
   enabled?: boolean;
+  [key: string]: unknown;
 }
 
 export class Sequence extends Plugin<SequenceOptions> {

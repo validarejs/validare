@@ -4,6 +4,7 @@ import type { ElementValidatedPayload } from '../../core/types';
 export interface BulmaOptions {
   validClass?: string;
   invalidClass?: string;
+  [key: string]: unknown;
 }
 
 export class Bulma extends Plugin<BulmaOptions> {

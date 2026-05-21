@@ -48,3 +48,6 @@ export type {
 
 // Re-export validators (for advanced users who want to register manually)
 export * from './validators/index';
+
+// Re-export plugins
+export * from './plugins/index';

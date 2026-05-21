@@ -6,6 +6,7 @@ export interface MessageOptions {
   container?: string;
   /** CSS class added to the message container element */
   clazz?: string;
+  [key: string]: unknown;
 }
 
 export class Message extends Plugin<MessageOptions> {

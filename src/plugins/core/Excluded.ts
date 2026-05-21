@@ -4,6 +4,7 @@ type ExcludedFn = (field: string, element: HTMLElement) => boolean;
 
 export interface ExcludedOptions {
   excluded?: string | ExcludedFn;
+  [key: string]: unknown;
 }
 
 export class Excluded extends Plugin<ExcludedOptions> {

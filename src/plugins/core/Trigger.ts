@@ -5,6 +5,7 @@ export interface TriggerOptions {
   event?: string | Record<string, string | false>;
   /** Debounce delay in milliseconds */
   delay?: number;
+  [key: string]: unknown;
 }
 
 interface Handler {
