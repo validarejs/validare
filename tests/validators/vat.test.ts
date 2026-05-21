@@ -49,7 +49,7 @@ describe("vat", () => {
   it("CH - invalid", () => expect(check("CHE107322958", "CH")).toBe(false));
 
   // CY
-  it("CY - valid", () => expect(check("10259962P", "CY")).toBe(true));
+  it("CY - valid", () => expect(check("10259962F", "CY")).toBe(true));
   it("CY - invalid", () => expect(check("12345678X", "CY")).toBe(false));
 
   // CZ - 8 digits (legal)
@@ -71,7 +71,7 @@ describe("vat", () => {
   it("EE - invalid", () => expect(check("100931557", "EE")).toBe(false));
 
   // EL (Greece with EL prefix)
-  it("EL - valid", () => expect(check("023456783", "EL")).toBe(true));
+  it("EL - valid", () => expect(check("023456780", "EL")).toBe(true));
   it("EL - invalid", () => expect(check("123456781", "EL")).toBe(false));
 
   // ES - DNI
@@ -83,7 +83,7 @@ describe("vat", () => {
   it("ES - CIF valid", () => expect(check("A58818501", "ES")).toBe(true));
 
   // FI
-  it("FI - valid", () => expect(check("09853605", "FI")).toBe(true));
+  it("FI - valid", () => expect(check("09853608", "FI")).toBe(true));
   it("FI - invalid", () => expect(check("09853604", "FI")).toBe(false));
 
   // FR
@@ -98,7 +98,7 @@ describe("vat", () => {
   it("GB - HA valid", () => expect(check("HA599", "GB")).toBe(true));
 
   // GR
-  it("GR - valid", () => expect(check("023456783", "GR")).toBe(true));
+  it("GR - valid", () => expect(check("023456780", "GR")).toBe(true));
   it("GR - invalid", () => expect(check("123456781", "GR")).toBe(false));
 
   // HR
@@ -124,10 +124,10 @@ describe("vat", () => {
   it("IT - invalid all-zero company", () => expect(check("00000000366", "IT")).toBe(false));
 
   // LT - 9 digits
-  it("LT - 9 digits valid", () => expect(check("213179412", "LT")).toBe(true));
+  it("LT - 9 digits valid", () => expect(check("213179410", "LT")).toBe(true));
   it("LT - 9 digits invalid", () => expect(check("213179411", "LT")).toBe(false));
   // LT - 12 digits
-  it("LT - 12 digits valid", () => expect(check("290061371310", "LT")).toBe(true));
+  it("LT - 12 digits valid", () => expect(check("290061371314", "LT")).toBe(true));
 
   // LU
   it("LU - valid", () => expect(check("15027442", "LU")).toBe(true));
@@ -146,7 +146,7 @@ describe("vat", () => {
   it("NL - invalid", () => expect(check("123456789B01", "NL")).toBe(false));
 
   // NO
-  it("NO - valid", () => expect(check("985986838", "NO")).toBe(true));
+  it("NO - valid", () => expect(check("985986835", "NO")).toBe(true));
   it("NO - invalid", () => expect(check("985986839", "NO")).toBe(false));
 
   // PL
@@ -166,13 +166,13 @@ describe("vat", () => {
   it("RS - invalid", () => expect(check("101134701", "RS")).toBe(false));
 
   // RU - 10 digits
-  it("RU - 10 digits valid", () => expect(check("7805392271", "RU")).toBe(true));
+  it("RU - 10 digits valid", () => expect(check("7805392272", "RU")).toBe(true));
   it("RU - 10 digits invalid", () => expect(check("7805392270", "RU")).toBe(false));
   // RU - 12 digits
   it("RU - 12 digits valid", () => expect(check("760307073214", "RU")).toBe(true));
 
   // SE
-  it("SE - valid", () => expect(check("556564546401", "SE")).toBe(true));
+  it("SE - valid", () => expect(check("556564546101", "SE")).toBe(true));
   it("SE - invalid", () => expect(check("556564546402", "SE")).toBe(false));
 
   // SI
