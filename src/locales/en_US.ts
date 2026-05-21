@@ -1,0 +1,27 @@
+// src/locales/en_US.ts
+import type { LocaleData } from '../core/types';
+
+export const en_US: LocaleData = {
+  notEmpty: { default: 'Please enter a value' },
+  email: { default: 'Please enter a valid email address' },
+  creditCard: { default: 'Please enter a valid credit card number' },
+  date: { default: 'Please enter a valid date' },
+  digits: { default: 'Please enter only digits' },
+  integer: { default: 'Please enter a valid integer' },
+  numeric: { default: 'Please enter a valid number' },
+  regexp: { default: 'Please enter a value matching the required pattern' },
+  uri: { default: 'Please enter a valid URL' },
+  identical: { default: 'Please enter the same value' },
+  different: { default: 'Please enter a different value' },
+  between: { default: 'Please enter a value between the minimum and maximum' },
+  greaterThan: { default: 'Please enter a value greater than or equal to the minimum' },
+  lessThan: { default: 'Please enter a value less than or equal to the maximum' },
+  stringLength: { default: 'Please enter a value with a valid length' },
+  stringCase: { default: 'Please enter a value with the correct case' },
+  choice: { default: 'Please choose the correct number of options' },
+  file: { default: 'Please select a valid file' },
+  callback: { default: 'Please enter a valid value' },
+  promise: { default: 'Please enter a valid value' },
+  remote: { default: 'Please enter a valid value' },
+  ip: { default: 'Please enter a valid IP address' },
+};

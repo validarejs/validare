@@ -1,0 +1,27 @@
+// src/locales/pt_BR.ts
+import type { LocaleData } from '../core/types';
+
+export const pt_BR: LocaleData = {
+  notEmpty: { default: 'Por favor, preencha este campo' },
+  email: { default: 'Por favor, informe um endereço de e-mail válido' },
+  creditCard: { default: 'Por favor, informe um número de cartão de crédito válido' },
+  date: { default: 'Por favor, informe uma data válida' },
+  digits: { default: 'Por favor, informe apenas dígitos' },
+  integer: { default: 'Por favor, informe um número inteiro válido' },
+  numeric: { default: 'Por favor, informe um valor numérico válido' },
+  regexp: { default: 'Por favor, informe um valor que corresponda ao padrão exigido' },
+  uri: { default: 'Por favor, informe uma URL válida' },
+  identical: { default: 'Por favor, informe o mesmo valor' },
+  different: { default: 'Por favor, informe um valor diferente' },
+  between: { default: 'Por favor, informe um valor dentro do intervalo permitido' },
+  greaterThan: { default: 'Por favor, informe um valor maior ou igual ao mínimo' },
+  lessThan: { default: 'Por favor, informe um valor menor ou igual ao máximo' },
+  stringLength: { default: 'Por favor, informe um valor com o comprimento correto' },
+  stringCase: { default: 'Por favor, informe um valor com o formato de maiúsculas/minúsculas correto' },
+  choice: { default: 'Por favor, selecione o número correto de opções' },
+  file: { default: 'Por favor, selecione um arquivo válido' },
+  callback: { default: 'Por favor, informe um valor válido' },
+  promise: { default: 'Por favor, informe um valor válido' },
+  remote: { default: 'Por favor, informe um valor válido' },
+  ip: { default: 'Por favor, informe um endereço IP válido' },
+};

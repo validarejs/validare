@@ -51,3 +51,6 @@ export * from './validators/index';
 
 // Re-export plugins
 export * from './plugins/index';
+
+// Re-export locales
+export * from './locales/index';
