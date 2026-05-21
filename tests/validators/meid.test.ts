@@ -30,4 +30,10 @@ describe("meid", () => {
   it("rejects random string", () => expect(v.validate(inp("notameid")).valid).toBe(false));
   it("rejects wrong length (13 hex)", () =>
     expect(v.validate(inp("AF0123450ABCD")).valid).toBe(false));
+  it("accepts hex MEID with non-zero sum branch check digit", () =>
+    expect(v.validate(inp("AF012345000001A")).valid).toBe(true));
+  it("rejects hex MEID with wrong non-zero sum check digit", () =>
+    expect(v.validate(inp("AF012345000001B")).valid).toBe(false));
+  it("accepts hex MEID with separators", () =>
+    expect(v.validate(inp("AF-012345-0ABCDE-0")).valid).toBe(true));
 });

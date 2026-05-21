@@ -29,7 +29,7 @@ function hexCheckValid(v: string): boolean {
     sum += Number.parseInt(checkDigit.charAt(i), 16);
   }
   if (sum % 10 === 0) return cd === "0";
-  return cd === ((Math.ceil((sum + 1) / 10) * 10 - sum) * 2).toString(16).toUpperCase();
+  return cd === ((Math.floor((sum + 10) / 10) * 10 - sum) * 2).toString(16).toUpperCase();
 }
 
 export const meid: ValidatorFactory = () => ({
