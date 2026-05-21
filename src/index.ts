@@ -12,7 +12,7 @@ export function validare(form: HTMLFormElement, options: ValidareOptions): Core 
   const { fields, plugins = {}, locale } = options;
   const core = new Core(form);
 
-  // Pre-register all 22 built-in validators
+  // Pre-register all built-in validators
   for (const [name, factory] of Object.entries(builtinValidators)) {
     core.registerValidator(name, factory);
   }

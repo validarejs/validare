@@ -1,10 +1,29 @@
-import { describe, it, expect, afterEach } from 'vitest';
-import { validare } from '../../src/index';
-import { pt_BR } from '../../src/locales/pt_BR';
-import { en_US } from '../../src/locales/en_US';
-import { makeForm } from '../helpers';
+import { describe, it, expect, afterEach } from "vitest";
+import { validare } from "../../src/index";
+import { pt_BR } from "../../src/locales/pt_BR";
+import { en_US } from "../../src/locales/en_US";
+import { makeForm } from "../helpers";
 
-afterEach(() => { document.body.innerHTML = ''; });
+const EXPECTED_KEYS = [
+  "notEmpty", "email", "creditCard", "date", "digits", "integer", "numeric",
+  "regexp", "uri", "identical", "different", "between", "greaterThan", "lessThan",
+  "stringLength", "stringCase", "choice", "file", "callback", "promise", "remote", "ip",
+  "base64", "hex", "mac", "bic", "uuid", "color", "step", "vin",
+  "ean", "isbn", "ismn", "issn", "grid", "cusip", "isin", "sedol",
+];
+
+afterEach(() => {
+  document.body.innerHTML = "";
+});
+
+describe("Locale completeness", () => {
+  it.each(EXPECTED_KEYS)("en_US has non-empty message for %s", (key) => {
+    expect(en_US[key]?.default).toBeTruthy();
+  });
+  it.each(EXPECTED_KEYS)("pt_BR has non-empty message for %s", (key) => {
+    expect(pt_BR[key]?.default).toBeTruthy();
+  });
+});
 
 describe('Locales', () => {
   it('uses en_US message when locale is en_US', async () => {
