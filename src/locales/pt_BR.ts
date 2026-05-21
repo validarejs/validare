@@ -49,4 +49,7 @@ export const pt_BR: LocaleData = {
   rtn: { default: "Por favor, informe um RTN válido" },
   siren: { default: "Por favor, informe um número SIREN válido" },
   siret: { default: "Por favor, informe um número SIRET válido" },
+  iban: { default: "Por favor, informe um IBAN válido" },
+  phone: { default: "Por favor, informe um número de telefone válido" },
+  zipCode: { default: "Por favor, informe um CEP válido" },
 };

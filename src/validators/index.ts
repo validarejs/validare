@@ -44,3 +44,6 @@ export { ein } from "./ein";
 export { rtn } from "./rtn";
 export { siren } from "./siren";
 export { siret } from "./siret";
+export { iban } from "./iban";
+export { phone } from "./phone";
+export { zipCode } from "./zipCode";

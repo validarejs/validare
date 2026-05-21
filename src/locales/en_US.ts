@@ -47,4 +47,7 @@ export const en_US: LocaleData = {
   rtn: { default: "Please enter a valid RTN" },
   siren: { default: "Please enter a valid SIREN number" },
   siret: { default: "Please enter a valid SIRET number" },
+  iban: { default: "Please enter a valid IBAN" },
+  phone: { default: "Please enter a valid phone number" },
+  zipCode: { default: "Please enter a valid zip code" },
 };

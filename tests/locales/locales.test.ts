@@ -11,6 +11,7 @@ const EXPECTED_KEYS = [
   "base64", "hex", "mac", "bic", "uuid", "color", "step", "vin",
   "ean", "isbn", "ismn", "issn", "grid", "cusip", "isin", "sedol",
   "imei", "imo", "meid", "ein", "rtn", "siren", "siret",
+  "iban", "phone", "zipCode",
 ];
 
 afterEach(() => {
