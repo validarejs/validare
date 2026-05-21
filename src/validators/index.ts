@@ -29,3 +29,5 @@ export { uuid } from './uuid';
 export { color } from './color';
 export { step } from './step';
 export { vin } from './vin';
+export { isbn } from './isbn';
+export { ismn } from './ismn';
