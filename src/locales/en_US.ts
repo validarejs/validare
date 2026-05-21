@@ -40,4 +40,11 @@ export const en_US: LocaleData = {
   cusip: { default: "Please enter a valid CUSIP number" },
   isin: { default: "Please enter a valid ISIN number" },
   sedol: { default: "Please enter a valid SEDOL number" },
+  imei: { default: "Please enter a valid IMEI number" },
+  imo: { default: "Please enter a valid IMO number" },
+  meid: { default: "Please enter a valid MEID number" },
+  ein: { default: "Please enter a valid EIN number" },
+  rtn: { default: "Please enter a valid RTN" },
+  siren: { default: "Please enter a valid SIREN number" },
+  siret: { default: "Please enter a valid SIRET number" },
 };

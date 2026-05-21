@@ -10,6 +10,7 @@ const EXPECTED_KEYS = [
   "stringLength", "stringCase", "choice", "file", "callback", "promise", "remote", "ip",
   "base64", "hex", "mac", "bic", "uuid", "color", "step", "vin",
   "ean", "isbn", "ismn", "issn", "grid", "cusip", "isin", "sedol",
+  "imei", "imo", "meid", "ein", "rtn", "siren", "siret",
 ];
 
 afterEach(() => {

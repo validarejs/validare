@@ -42,4 +42,11 @@ export const pt_BR: LocaleData = {
   cusip: { default: "Por favor, informe um número CUSIP válido" },
   isin: { default: "Por favor, informe um número ISIN válido" },
   sedol: { default: "Por favor, informe um número SEDOL válido" },
+  imei: { default: "Por favor, informe um número IMEI válido" },
+  imo: { default: "Por favor, informe um número IMO válido" },
+  meid: { default: "Por favor, informe um número MEID válido" },
+  ein: { default: "Por favor, informe um número EIN válido" },
+  rtn: { default: "Por favor, informe um RTN válido" },
+  siren: { default: "Por favor, informe um número SIREN válido" },
+  siret: { default: "Por favor, informe um número SIRET válido" },
 };
