@@ -24,4 +24,12 @@ export const en_US: LocaleData = {
   promise: { default: 'Please enter a valid value' },
   remote: { default: 'Please enter a valid value' },
   ip: { default: 'Please enter a valid IP address' },
+  base64: { default: 'Please enter a valid Base64 encoded string' },
+  hex: { default: 'Please enter a valid hexadecimal number' },
+  mac: { default: 'Please enter a valid MAC address' },
+  bic: { default: 'Please enter a valid BIC/SWIFT code' },
+  uuid: { default: 'Please enter a valid UUID' },
+  color: { default: 'Please enter a valid color' },
+  step: { default: 'Please enter a valid step value' },
+  vin: { default: 'Please enter a valid VIN' },
 };

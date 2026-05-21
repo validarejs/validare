@@ -24,4 +24,12 @@ export const pt_BR: LocaleData = {
   promise: { default: 'Por favor, informe um valor válido' },
   remote: { default: 'Por favor, informe um valor válido' },
   ip: { default: 'Por favor, informe um endereço IP válido' },
+  base64: { default: 'Por favor, informe uma string Base64 válida' },
+  hex: { default: 'Por favor, informe um número hexadecimal válido' },
+  mac: { default: 'Por favor, informe um endereço MAC válido' },
+  bic: { default: 'Por favor, informe um código BIC/SWIFT válido' },
+  uuid: { default: 'Por favor, informe um UUID válido' },
+  color: { default: 'Por favor, informe uma cor válida' },
+  step: { default: 'Por favor, informe um valor de passo válido' },
+  vin: { default: 'Por favor, informe um VIN válido' },
 };
