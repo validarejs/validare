@@ -38,7 +38,7 @@ const fv = validare(form, {
 | Value | Reason |
 |---|---|
 | `"not-a-uuid"` | Wrong format |
-| `"550e8400-e29b-61d4-a716-446655440000"` | Version digit `6` is not valid (1–5 only) |
+| `"550e8400-e29b-61d4-a716-446655440000"` | Version digit `6` is not valid (only versions 3, 4, and 5 are supported) |
 
 ## Notes
 
