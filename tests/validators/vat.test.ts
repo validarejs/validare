@@ -87,8 +87,8 @@ describe("vat", () => {
   it("FI - invalid", () => expect(check("09853604", "FI")).toBe(false));
 
   // FR
-  it("FR - numeric key valid", () => expect(check("13585627865", "FR")).toBe(true));
-  it("FR - invalid", () => expect(check("13585627864", "FR")).toBe(false));
+  it("FR - numeric key valid", () => expect(check("13542107651", "FR")).toBe(true));
+  it("FR - invalid", () => expect(check("13542107650", "FR")).toBe(false));
 
   // GB - standard 9 digits
   it("GB - valid 9 digits", () => expect(check("980780684", "GB")).toBe(true));

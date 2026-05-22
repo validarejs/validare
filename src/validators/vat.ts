@@ -62,7 +62,8 @@ function isValidDate(year: number, month: number, day: number): boolean {
 // --- Country helpers ---
 
 function arVat(value: string): boolean {
-  const v = value.replace("-", "").replace(/^AR/, "");
+  let v = value.replace("-", "");
+  if (/^AR[0-9]{11}$/.test(v)) v = v.substr(2);
   if (!/^[0-9]{11}$/.test(v)) return false;
   const weight = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
   let sum = 0;
@@ -345,7 +346,7 @@ function frVat(value: string): boolean {
   if (/^FR[0-9A-Z]{2}[0-9]{9}$/.test(v)) v = v.substr(2);
   if (!/^[0-9A-Z]{2}[0-9]{9}$/.test(v)) return false;
   if (v.substr(2, 4) !== "000") {
-    return luhn(v);
+    return luhn(v.substr(2));
   }
   if (/^[0-9]{2}$/.test(v.substr(0, 2))) {
     return v.substr(0, 2) === `${Number.parseInt(v.substr(2) + "12", 10) % 97}`;
