@@ -56,4 +56,8 @@ export const pt_BR: LocaleData = {
     default: "Por favor, insira um número de IVA válido",
     country: "Por favor, insira um número de IVA válido para %s",
   },
+  id: {
+    default: "Por favor, insira um número de identificação nacional válido",
+    country: "Por favor, insira um número de identificação nacional válido para %s",
+  },
 };

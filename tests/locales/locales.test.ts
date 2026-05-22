@@ -13,6 +13,7 @@ const EXPECTED_KEYS = [
   "imei", "imo", "meid", "ein", "rtn", "siren", "siret",
   "iban", "phone", "zipCode",
   "vat",
+  "id",
 ];
 
 afterEach(() => {

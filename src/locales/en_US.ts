@@ -54,4 +54,8 @@ export const en_US: LocaleData = {
     default: "Please enter a valid VAT number",
     country: "Please enter a valid VAT number in %s",
   },
+  id: {
+    default: "Please enter a valid national identification number",
+    country: "Please enter a valid national identification number in %s",
+  },
 };
