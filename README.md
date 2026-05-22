@@ -9,7 +9,7 @@ Inspired by [FormValidation](https://formvalidation.io/) (discontinued).
 - Written in TypeScript — full type safety
 - Zero dependencies — no jQuery, no frameworks
 - Plugin-based architecture — small core, everything else is a plugin
-- 22 built-in validators
+- **50 built-in validators** — core, financial, identity, encoding, and more
 - CSS framework integrations (Bootstrap 5, Bulma, Tailwind)
 - Sync and async validators
 - Localization support
@@ -102,6 +102,8 @@ Available locales: `en_US` (default), `pt_BR`.
 
 ## Validators
 
+### Core (22)
+
 | Name | Description |
 |---|---|
 | `notEmpty` | Not empty (supports `trim`) |
@@ -126,6 +128,84 @@ Available locales: `en_US` (default), `pt_BR`.
 | `promise` | Custom async function |
 | `remote` | Remote validation via fetch |
 | `ip` | IP address (IPv4 and IPv6) |
+
+### Format & Encoding (6)
+
+| Name | Description |
+|---|---|
+| `base64` | Base64 encoded string |
+| `hex` | Hexadecimal number |
+| `mac` | MAC address |
+| `bic` | BIC/SWIFT code |
+| `uuid` | UUID (v1–v5) |
+| `color` | CSS color (#hex, rgb, hsl, named) |
+
+### Financial Instruments (6)
+
+| Name | Description |
+|---|---|
+| `iban` | IBAN (International Bank Account Number, 77 countries) |
+| `vat` | VAT number (options: `country`) |
+| `cusip` | CUSIP (North American securities) |
+| `isin` | ISIN (International Securities Identification Number) |
+| `sedol` | SEDOL (London Stock Exchange) |
+| `grid` | GRId (Global Release Identifier) |
+
+### Publication Codes (4)
+
+| Name | Description |
+|---|---|
+| `ean` | EAN barcode (EAN-8 and EAN-13) |
+| `isbn` | ISBN (ISBN-10 and ISBN-13) |
+| `ismn` | ISMN (International Standard Music Number) |
+| `issn` | ISSN (International Standard Serial Number) |
+
+### Device & Vehicle (5)
+
+| Name | Description |
+|---|---|
+| `imei` | IMEI (mobile device identifier) |
+| `imo` | IMO (vessel number) |
+| `meid` | MEID (CDMA device identifier) |
+| `step` | Multiple of a step value |
+| `vin` | VIN (Vehicle Identification Number, USA) |
+
+### Tax & Business (4)
+
+| Name | Description |
+|---|---|
+| `ein` | EIN (US Employer Identification Number) |
+| `rtn` | RTN (US Routing Transit Number) |
+| `siren` | SIREN (French company identifier) |
+| `siret` | SIRET (French establishment identifier) |
+
+### Identity & Geographic (3)
+
+| Name | Description |
+|---|---|
+| `id` | National identification number (options: `country`, 42 countries) |
+| `phone` | Phone number (options: `country`) |
+| `zipCode` | Postal/ZIP code (options: `country`) |
+
+### Country-Specific Validators
+
+`vat`, `id`, `phone`, and `zipCode` accept a `country` option (ISO 3166-1 alpha-2 code).
+When the country is unknown or omitted, the validator passes (returns valid).
+
+```js
+fields: {
+  vatNumber: {
+    validators: {
+      vat: { country: 'BR', message: 'Por favor, insira um CPF/CNPJ válido' },
+    },
+  },
+  nationalId: {
+    validators: {
+      id: { country: 'BR' },
+    },
+  },
+}
+```
 
 ## Plugins
 
