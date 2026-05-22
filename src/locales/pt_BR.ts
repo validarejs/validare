@@ -52,4 +52,8 @@ export const pt_BR: LocaleData = {
   iban: { default: "Por favor, informe um IBAN válido" },
   phone: { default: "Por favor, informe um número de telefone válido" },
   zipCode: { default: "Por favor, informe um CEP válido" },
+  vat: {
+    default: "Por favor, insira um número de IVA válido",
+    country: "Por favor, insira um número de IVA válido para %s",
+  },
 };

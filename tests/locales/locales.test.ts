@@ -12,6 +12,7 @@ const EXPECTED_KEYS = [
   "ean", "isbn", "ismn", "issn", "grid", "cusip", "isin", "sedol",
   "imei", "imo", "meid", "ein", "rtn", "siren", "siret",
   "iban", "phone", "zipCode",
+  "vat",
 ];
 
 afterEach(() => {

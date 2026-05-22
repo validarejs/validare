@@ -50,4 +50,8 @@ export const en_US: LocaleData = {
   iban: { default: "Please enter a valid IBAN" },
   phone: { default: "Please enter a valid phone number" },
   zipCode: { default: "Please enter a valid zip code" },
+  vat: {
+    default: "Please enter a valid VAT number",
+    country: "Please enter a valid VAT number in %s",
+  },
 };
