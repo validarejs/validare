@@ -1,5 +1,5 @@
-import { Plugin } from '../../core/Plugin';
-import type { ElementValidatedPayload } from '../../core/types';
+import { Plugin } from "../../core/Plugin";
+import type { ElementValidatedPayload } from "../../core/types";
 
 export interface MessageOptions {
   /** CSS selector for a custom message container. If omitted, a div is inserted after the field. */
@@ -23,8 +23,8 @@ export class Message extends Plugin<MessageOptions> {
 
     let container = this.containers.get(element);
     if (!container) {
-      container = document.createElement('div');
-      container.className = this.opts.clazz ?? 'fv-plugins-message-container';
+      container = document.createElement("div");
+      container.className = this.opts.clazz ?? "fv-plugins-message-container";
 
       const customContainer = this.opts.container
         ? document.querySelector(this.opts.container)
@@ -38,12 +38,12 @@ export class Message extends Plugin<MessageOptions> {
       this.containers.set(element, container);
     }
 
-    container.innerHTML = '';
+    container.innerHTML = "";
     if (!valid) {
       for (const [, result] of Object.entries(validators)) {
         if (!result.valid && result.message) {
-          const msg = document.createElement('div');
-          msg.className = 'fv-plugins-message';
+          const msg = document.createElement("div");
+          msg.className = "fv-plugins-message";
           msg.textContent = result.message;
           container.appendChild(msg);
         }
@@ -63,16 +63,16 @@ export class Message extends Plugin<MessageOptions> {
   };
 
   install(): void {
-    this.core.on('core.element.validated', this.onElementValidated);
-    this.core.on('core.field.removed', this.onFieldRemoved);
+    this.core.on("core.element.validated", this.onElementValidated);
+    this.core.on("core.field.removed", this.onFieldRemoved);
   }
 
   uninstall(): void {
-    this.core.off('core.element.validated', this.onElementValidated);
-    this.core.off('core.field.removed', this.onFieldRemoved);
-    this.containers.forEach((container) => {
+    this.core.off("core.element.validated", this.onElementValidated);
+    this.core.off("core.field.removed", this.onFieldRemoved);
+    for (const container of this.containers.values()) {
       container.parentNode?.removeChild(container);
-    });
+    }
     this.containers.clear();
   }
 }

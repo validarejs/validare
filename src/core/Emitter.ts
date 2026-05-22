@@ -18,7 +18,10 @@ export function createEmitter(): Emitter {
       listeners.get(event)?.delete(handler);
     },
     emit(event, ...args) {
-      listeners.get(event)?.forEach((h) => h(...args));
+      const handlers = listeners.get(event);
+      if (handlers) {
+        for (const h of handlers) h(...args);
+      }
     },
   };
 }

@@ -1,5 +1,5 @@
-import { Plugin } from '../../core/Plugin';
-import type { ElementValidatedPayload } from '../../core/types';
+import { Plugin } from "../../core/Plugin";
+import type { ElementValidatedPayload } from "../../core/types";
 
 export interface TailwindOptions {
   /** Space-separated Tailwind classes for valid state */
@@ -13,8 +13,8 @@ export class Tailwind extends Plugin<TailwindOptions> {
   private trackedElements = new Set<HTMLElement>();
 
   private applyClasses(element: HTMLElement, valid: boolean): void {
-    const validClasses = (this.opts.validClass ?? '').split(' ').filter(Boolean);
-    const invalidClasses = (this.opts.invalidClass ?? '').split(' ').filter(Boolean);
+    const validClasses = (this.opts.validClass ?? "").split(" ").filter(Boolean);
+    const invalidClasses = (this.opts.invalidClass ?? "").split(" ").filter(Boolean);
     if (valid) {
       element.classList.add(...validClasses);
       element.classList.remove(...invalidClasses);
@@ -32,16 +32,16 @@ export class Tailwind extends Plugin<TailwindOptions> {
   };
 
   install(): void {
-    this.core.on('core.element.validated', this.onElementValidated);
+    this.core.on("core.element.validated", this.onElementValidated);
   }
 
   uninstall(): void {
-    this.core.off('core.element.validated', this.onElementValidated);
-    const validClasses = (this.opts.validClass ?? '').split(' ').filter(Boolean);
-    const invalidClasses = (this.opts.invalidClass ?? '').split(' ').filter(Boolean);
-    this.trackedElements.forEach((el) => {
+    this.core.off("core.element.validated", this.onElementValidated);
+    const validClasses = (this.opts.validClass ?? "").split(" ").filter(Boolean);
+    const invalidClasses = (this.opts.invalidClass ?? "").split(" ").filter(Boolean);
+    for (const el of this.trackedElements) {
       el.classList.remove(...validClasses, ...invalidClasses);
-    });
+    }
     this.trackedElements.clear();
   }
 }

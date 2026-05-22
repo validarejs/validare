@@ -1,5 +1,5 @@
-import { Plugin } from '../../core/Plugin';
-import type { ElementValidatedPayload } from '../../core/types';
+import { Plugin } from "../../core/Plugin";
+import type { ElementValidatedPayload } from "../../core/types";
 
 export interface IconOptions {
   valid?: string;
@@ -12,7 +12,7 @@ export class Icon extends Plugin<IconOptions> {
   private icons = new Map<HTMLElement, HTMLElement>();
 
   constructor(opts?: IconOptions) {
-    super({ valid: '✓', invalid: '✗', validating: '…', ...opts });
+    super({ valid: "✓", invalid: "✗", validating: "…", ...opts });
   }
 
   private onElementValidated = (payload: unknown): void => {
@@ -21,19 +21,19 @@ export class Icon extends Plugin<IconOptions> {
 
     let icon = this.icons.get(element);
     if (!icon) {
-      icon = document.createElement('span');
-      icon.className = 'fv-plugins-icon';
+      icon = document.createElement("span");
+      icon.className = "fv-plugins-icon";
       element.parentNode?.insertBefore(icon, element.nextSibling);
       this.icons.set(element, icon);
     }
 
-    icon.classList.remove('fv-plugins-icon--valid', 'fv-plugins-icon--invalid');
+    icon.classList.remove("fv-plugins-icon--valid", "fv-plugins-icon--invalid");
     if (valid) {
-      icon.classList.add('fv-plugins-icon--valid');
-      icon.textContent = this.opts.valid ?? '✓';
+      icon.classList.add("fv-plugins-icon--valid");
+      icon.textContent = this.opts.valid ?? "✓";
     } else {
-      icon.classList.add('fv-plugins-icon--invalid');
-      icon.textContent = this.opts.invalid ?? '✗';
+      icon.classList.add("fv-plugins-icon--invalid");
+      icon.textContent = this.opts.invalid ?? "✗";
     }
   };
 
@@ -49,14 +49,16 @@ export class Icon extends Plugin<IconOptions> {
   };
 
   install(): void {
-    this.core.on('core.element.validated', this.onElementValidated);
-    this.core.on('core.field.removed', this.onFieldRemoved);
+    this.core.on("core.element.validated", this.onElementValidated);
+    this.core.on("core.field.removed", this.onFieldRemoved);
   }
 
   uninstall(): void {
-    this.core.off('core.element.validated', this.onElementValidated);
-    this.core.off('core.field.removed', this.onFieldRemoved);
-    this.icons.forEach((icon) => icon.parentNode?.removeChild(icon));
+    this.core.off("core.element.validated", this.onElementValidated);
+    this.core.off("core.field.removed", this.onFieldRemoved);
+    for (const icon of this.icons.values()) {
+      icon.parentNode?.removeChild(icon);
+    }
     this.icons.clear();
   }
 }
