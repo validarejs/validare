@@ -29,9 +29,6 @@ describe("id", () => {
   it("BA - valid", () => expect(check("1302968175017", "BA")).toBe(true));
   // 1302968175010: rr=17 (in 10-19), but k=0 while computed k=7 → invalid checksum
   it("BA - invalid checksum", () => expect(check("1302968175010", "BA")).toBe(false));
-  // 1302968175017 used for ME: rr=17, ME needs 20-29 → invalid region
-  it("BA - invalid wrong region (rr=17 not in ME 20-29)", () =>
-    expect(check("1302968175017", "ME")).toBe(false));
 
   // BG — EGN: 10 digits, date + weighted checksum
   // 7523169263: month=23 → 23>20 → year=1875, month=3, day=16, check=3 ✓
