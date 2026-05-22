@@ -29,7 +29,6 @@ const fv = validare(form, {
 | Value | Notes |
 |---|---|
 | `"A10000009296F2"` | Valid 14-char hex MEID |
-| `"490154203237518"` | Valid 15-digit decimal MEID |
 
 ## Invalid Values
 
@@ -41,4 +40,4 @@ const fv = validare(form, {
 ## Notes
 
 - Empty string (`""`) always returns `valid: true`. Combine with `notEmpty` to require a value.
-- MEID is 14 hexadecimal characters or 18 decimal digits. The 15-digit form shown above is a decimal MEID.
+- MEID is 14 hexadecimal characters. The decimal representation is 18 digits.
