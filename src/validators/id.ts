@@ -1379,7 +1379,7 @@ function nlId(value: string): boolean {
     sum += (9 - i) * Number.parseInt(v.charAt(i), 10);
   }
   sum = sum % 11;
-  if (sum === 10) sum = 0;
+  if (sum === 10) return false;
   return `${sum}` === v.charAt(v.length - 1);
 }
 
@@ -1405,7 +1405,7 @@ function noId(value: string): boolean {
 }
 
 function peId(value: string): boolean {
-  if (!/^\d{8}[0-9A-Z]*$/.test(value)) return false;
+  if (!/^\d{8}[0-9A-Z]?$/.test(value)) return false;
   if (value.length === 8) return true;
   const weight = [3, 2, 7, 6, 5, 4, 3, 2];
   let sum = 0;
@@ -1438,7 +1438,7 @@ function roId(value: string): boolean {
   const year2d = Number.parseInt(value.substr(1, 2), 10);
   const month = Number.parseInt(value.substr(3, 2), 10);
   const day = Number.parseInt(value.substr(5, 2), 10);
-  if (day > 31 && month > 12) return false;
+  if (day > 31 || month > 12) return false;
   const centuries: Record<string, number> = {
     "1": 1900,
     "2": 1900,
@@ -1462,7 +1462,7 @@ function roId(value: string): boolean {
 }
 
 function seId(value: string): boolean {
-  if (!/^[0-9]{10}$/.test(value) && !/^[0-9]{6}[-|+][0-9]{4}$/.test(value)) return false;
+  if (!/^[0-9]{10}$/.test(value) && !/^[0-9]{6}[-+][0-9]{4}$/.test(value)) return false;
   const v = value.replace(/[^0-9]/g, "");
   const year = Number.parseInt(v.substr(0, 2), 10) + 1900;
   const month = Number.parseInt(v.substr(2, 2), 10);

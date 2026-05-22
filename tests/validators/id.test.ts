@@ -225,6 +225,8 @@ describe("id", () => {
   it("NL - invalid checksum", () => expect(check("111222334", "NL")).toBe(false));
   // 1234567: length=7 < 8 → invalid too short
   it("NL - invalid too short", () => expect(check("1234567", "NL")).toBe(false));
+  // sum % 11 === 10 → must reject (was previously incorrectly accepted)
+  expect(check("100000060", "NL")).toBe(false);
 
   // NO — Fødselsnummer
   // 01015200193: cd1=9, cd2=3, both match ✓
