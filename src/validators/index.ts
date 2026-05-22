@@ -26,6 +26,7 @@ export { hex } from "./hex";
 export { mac } from "./mac";
 export { bic } from "./bic";
 export { uuid } from "./uuid";
+export { vat } from "./vat";
 export { color } from "./color";
 export { step } from "./step";
 export { vin } from "./vin";
