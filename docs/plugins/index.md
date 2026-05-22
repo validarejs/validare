@@ -20,3 +20,5 @@ All 9 built-in plugins.
 | [`Bootstrap5`](./Bootstrap5.md) | `ui` | Bootstrap 5 |
 | [`Bulma`](./Bulma.md) | `ui` | Bulma |
 | [`Tailwind`](./Tailwind.md) | `ui` | Tailwind CSS |
+
+> **Note:** All three CSS framework plugins share the key `ui`. Register only one per form instance.
