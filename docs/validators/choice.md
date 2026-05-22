@@ -51,5 +51,6 @@ const fv = validare(form, {
 
 ## Notes
 
-- Empty string (`""`) always returns `valid: true` — validators only run on non-empty values. Combine with `notEmpty` to require a value.
+- If no checkboxes are checked, `choice` counts 0 selected items. Set `min: 1` or higher to require at least one selection.
+- Do not combine with `notEmpty` — it checks string values, not checkbox state.
 - Applies to groups of checkboxes sharing the same `name` attribute.

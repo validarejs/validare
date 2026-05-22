@@ -33,15 +33,15 @@ const fv = validare(form, {
 
 | Value | Notes |
 |---|---|
-| `"hello"` | 5 characters — within min=1, max=10 |
-| `"ab"` | 2 characters — with min=1, max=10 |
+| `"hello"` | 5 characters — within min=3, max=20 |
+| `"abc"` | 3 characters — equal to min |
 
 ## Invalid Values
 
 | Value | Reason |
 |---|---|
-| `""` | 0 characters — below min=1 |
-| `"toolongstring"` | Exceeds max |
+| `"ab"` | 2 characters — below min=3 |
+| `"averylongusernamethatexceeds"` | Exceeds max=20 |
 
 ## Notes
 

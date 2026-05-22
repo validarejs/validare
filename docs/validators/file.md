@@ -34,8 +34,8 @@ const fv = validare(form, {
 
 | Value | Notes |
 |---|---|
-| `.pdf` file under 5 MB | Extension and size within limits |
-| `.jpg` file | Matches allowed extensions |
+| `.jpg` file under 5 MB | Extension and size within limits |
+| `.jpeg` file | Matches allowed extensions |
 
 ## Invalid Values
 

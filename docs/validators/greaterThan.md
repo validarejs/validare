@@ -32,14 +32,14 @@ const fv = validare(form, {
 
 | Value | Notes |
 |---|---|
-| `"10"` | Equal to min (inclusive=true) |
-| `"100"` | Above min |
+| `"1"` | Above min=0 |
+| `"100"` | Well above min |
 
 ## Invalid Values
 
 | Value | Reason |
 |---|---|
-| `"9"` | Below min=10 |
+| `"-1"` | Below min=0 |
 | `"0"` | Equal to min when `inclusive: false` |
 | `"abc"` | Not a number |
 

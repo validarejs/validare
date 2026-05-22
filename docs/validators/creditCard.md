@@ -30,7 +30,7 @@ const fv = validare(form, {
 |---|---|
 | `"4532015112830366"` | Visa |
 | `"5425233430109903"` | Mastercard |
-| `"374251018720955"` | American Express |
+| `"378282246310005"` | American Express |
 
 ## Invalid Values
 
