@@ -30,5 +30,6 @@ const fv = validare(form, {
 ## Notes
 
 - Icons are rendered as `<span>` elements inserted after each validated field element.
-- The `valid`, `invalid`, and `validating` values are set as `innerHTML` — SVG strings and HTML entities are supported.
+- The `valid`, `invalid`, and `validating` values are set as `textContent`. Plain Unicode characters work correctly. SVG markup and HTML entity syntax are NOT interpreted — use actual Unicode characters (e.g., `"✓"` not `"&check;"`).
+- The `validating` option is reserved but not yet implemented — no icon state change occurs while validation is in progress.
 - On `uninstall()`, all icon elements are removed from the DOM.

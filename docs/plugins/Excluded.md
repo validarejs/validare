@@ -13,7 +13,7 @@ Skips validation for fields that are disabled, hidden, or match a custom exclusi
 ```js
 import { validare, Excluded } from 'validare';
 
-// Default: excludes [disabled] and [style*="display: none"] elements
+// Default: excludes [disabled] and [type="hidden"] elements
 const fv = validare(form, {
   plugins: {
     excluded: new Excluded(),
@@ -34,6 +34,6 @@ const fv2 = validare(form, {
 
 ## Notes
 
-- By default, always excludes elements that are `[disabled]` or have `style="display: none"`.
-- The custom `excluded` function runs in addition to the built-in rules (it does not replace them).
+- By default, always excludes elements that have the `disabled` attribute or `type="hidden"`.
+- The custom `excluded` function is evaluated after the built-in disabled/hidden check. If the built-in check already excludes the field, the custom function is not called.
 - Compatible with `Sequence` — excluded fields do not count as failures.

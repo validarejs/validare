@@ -33,6 +33,6 @@ const fv = validare(form, {
 
 ## Notes
 
-- Without `Sequence`, all validators run in parallel regardless of earlier failures.
+- Without `Sequence`, all validators run regardless of earlier failures.
 - Particularly useful to prevent unnecessary `remote` requests when basic format validation fails.
 - Uses the `field-should-validate` filter internally; compatible with `Excluded`.

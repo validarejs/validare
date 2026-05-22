@@ -33,5 +33,5 @@ const fv = validare(form, {
 ## Notes
 
 - Without `container`, a `<div class="fv-plugins-message-container">` is inserted immediately after each validated field element.
-- With `container: '#errors'`, all messages from all fields go into that single element.
+- With `container: '#errors'`, per-field message divs are inserted inside that container instead of after each field element.
 - On `uninstall()` (e.g., `fv.destroy()`), all injected message elements are removed from the DOM.
