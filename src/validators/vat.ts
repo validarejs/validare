@@ -54,7 +54,16 @@ function isValidDate(year: number, month: number, day: number): boolean {
   const numDays = [
     31,
     year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0) ? 29 : 28,
-    31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31,
   ];
   return day >= 1 && day <= numDays[month - 1];
 }
@@ -123,8 +132,13 @@ function bgVat(value: string): boolean {
     let year = Number.parseInt(inp.substr(0, 2), 10) + 1900;
     let month = Number.parseInt(inp.substr(2, 2), 10);
     const day = Number.parseInt(inp.substr(4, 2), 10);
-    if (month > 40) { year += 100; month -= 40; }
-    else if (month > 20) { year -= 100; month -= 20; }
+    if (month > 40) {
+      year += 100;
+      month -= 40;
+    } else if (month > 20) {
+      year -= 100;
+      month -= 20;
+    }
     if (!isValidDate(year, month, day)) return false;
     const weight = [2, 4, 8, 5, 10, 9, 7, 3, 6];
     let s = 0;
@@ -204,7 +218,18 @@ function cyVat(value: string): boolean {
   if (/^CY[0-5|9][0-9]{7}[A-Z]$/.test(v)) v = v.substr(2);
   if (!/^[0-5|9][0-9]{7}[A-Z]$/.test(v)) return false;
   if (v.substr(0, 2) === "12") return false;
-  const translation: Record<string, number> = { "0": 1, "1": 0, "2": 5, "3": 7, "4": 9, "5": 13, "6": 15, "7": 17, "8": 19, "9": 21 };
+  const translation: Record<string, number> = {
+    "0": 1,
+    "1": 0,
+    "2": 5,
+    "3": 7,
+    "4": 9,
+    "5": 13,
+    "6": 15,
+    "7": 17,
+    "8": 19,
+    "9": 21,
+  };
   let sum = 0;
   for (let i = 0; i < 8; i++) {
     let temp = Number.parseInt(v.charAt(i), 10);
@@ -349,7 +374,7 @@ function frVat(value: string): boolean {
     return luhn(v.substr(2));
   }
   if (/^[0-9]{2}$/.test(v.substr(0, 2))) {
-    return v.substr(0, 2) === `${Number.parseInt(v.substr(2) + "12", 10) % 97}`;
+    return v.substr(0, 2) === `${Number.parseInt(`${v.substr(2)}12`, 10) % 97}`;
   }
   const alphabet = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
   let check: number;
@@ -401,7 +426,9 @@ function gbVat(value: string): boolean {
     let sum = 0;
     for (let i = 0; i < 9; i++) sum += Number.parseInt(v.charAt(i), 10) * weight[i];
     sum = sum % 97;
-    return Number.parseInt(v.substr(0, 3), 10) >= 100 ? sum === 0 || sum === 42 || sum === 55 : sum === 0;
+    return Number.parseInt(v.substr(0, 3), 10) >= 100
+      ? sum === 0 || sum === 42 || sum === 55
+      : sum === 0;
   }
   return true;
 }
@@ -485,7 +512,8 @@ function ltVat(value: string): boolean {
   let check = sum % 11;
   if (check === 10) {
     sum = 0;
-    for (let i = 0; i < length - 1; i++) sum += Number.parseInt(v.charAt(i), 10) * (1 + ((i + 2) % 9));
+    for (let i = 0; i < length - 1; i++)
+      sum += Number.parseInt(v.charAt(i), 10) * (1 + ((i + 2) % 9));
   }
   check = (check % 11) % 10;
   return `${check}` === v.charAt(length - 1);
@@ -639,8 +667,10 @@ function ruVat(value: string): boolean {
     sum1 += Number.parseInt(v.charAt(i), 10) * weight1[i];
     sum2 += Number.parseInt(v.charAt(i), 10) * weight2[i];
   }
-  sum1 = sum1 % 11; if (sum1 > 9) sum1 = sum1 % 10;
-  sum2 = sum2 % 11; if (sum2 > 9) sum2 = sum2 % 10;
+  sum1 = sum1 % 11;
+  if (sum1 > 9) sum1 = sum1 % 10;
+  sum2 = sum2 % 11;
+  if (sum2 > 9) sum2 = sum2 % 10;
   return `${sum1}` === v.substr(10, 1) && `${sum2}` === v.substr(11, 1);
 }
 
@@ -692,10 +722,44 @@ function zaVat(value: string): boolean {
 
 // --- Country code set ---
 const COUNTRY_CODES = new Set([
-  "AR", "AT", "BE", "BG", "BR", "CH", "CY", "CZ", "DE", "DK",
-  "EE", "EL", "ES", "FI", "FR", "GB", "GR", "HR", "HU", "IE",
-  "IS", "IT", "LT", "LU", "LV", "MT", "NL", "NO", "PL", "PT",
-  "RO", "RS", "RU", "SE", "SI", "SK", "VE", "ZA",
+  "AR",
+  "AT",
+  "BE",
+  "BG",
+  "BR",
+  "CH",
+  "CY",
+  "CZ",
+  "DE",
+  "DK",
+  "EE",
+  "EL",
+  "ES",
+  "FI",
+  "FR",
+  "GB",
+  "GR",
+  "HR",
+  "HU",
+  "IE",
+  "IS",
+  "IT",
+  "LT",
+  "LU",
+  "LV",
+  "MT",
+  "NL",
+  "NO",
+  "PL",
+  "PT",
+  "RO",
+  "RS",
+  "RU",
+  "SE",
+  "SI",
+  "SK",
+  "VE",
+  "ZA",
 ]);
 
 export const vat: ValidatorFactory = () => ({
@@ -704,45 +768,84 @@ export const vat: ValidatorFactory = () => ({
     const country = ((input.options.country as string | undefined) || "").toUpperCase();
     if (!country || !COUNTRY_CODES.has(country)) return { valid: true };
     switch (country) {
-      case "AR": return { valid: arVat(input.value) };
-      case "AT": return { valid: atVat(input.value) };
-      case "BE": return { valid: beVat(input.value) };
-      case "BG": return { valid: bgVat(input.value) };
-      case "BR": return { valid: brVat(input.value) };
-      case "CH": return { valid: chVat(input.value) };
-      case "CY": return { valid: cyVat(input.value) };
-      case "CZ": return { valid: czVat(input.value) };
-      case "DE": return { valid: deVat(input.value) };
-      case "DK": return { valid: dkVat(input.value) };
-      case "EE": return { valid: eeVat(input.value) };
-      case "EL": return { valid: grVat(input.value) };
-      case "ES": return { valid: esVat(input.value) };
-      case "FI": return { valid: fiVat(input.value) };
-      case "FR": return { valid: frVat(input.value) };
-      case "GB": return { valid: gbVat(input.value) };
-      case "GR": return { valid: grVat(input.value) };
-      case "HR": return { valid: hrVat(input.value) };
-      case "HU": return { valid: huVat(input.value) };
-      case "IE": return { valid: ieVat(input.value) };
-      case "IS": return { valid: isVat(input.value) };
-      case "IT": return { valid: itVat(input.value) };
-      case "LT": return { valid: ltVat(input.value) };
-      case "LU": return { valid: luVat(input.value) };
-      case "LV": return { valid: lvVat(input.value) };
-      case "MT": return { valid: mtVat(input.value) };
-      case "NL": return { valid: nlVat(input.value) };
-      case "NO": return { valid: noVat(input.value) };
-      case "PL": return { valid: plVat(input.value) };
-      case "PT": return { valid: ptVat(input.value) };
-      case "RO": return { valid: roVat(input.value) };
-      case "RS": return { valid: rsVat(input.value) };
-      case "RU": return { valid: ruVat(input.value) };
-      case "SE": return { valid: seVat(input.value) };
-      case "SI": return { valid: siVat(input.value) };
-      case "SK": return { valid: skVat(input.value) };
-      case "VE": return { valid: veVat(input.value) };
-      case "ZA": return { valid: zaVat(input.value) };
-      default: return { valid: true };
+      case "AR":
+        return { valid: arVat(input.value) };
+      case "AT":
+        return { valid: atVat(input.value) };
+      case "BE":
+        return { valid: beVat(input.value) };
+      case "BG":
+        return { valid: bgVat(input.value) };
+      case "BR":
+        return { valid: brVat(input.value) };
+      case "CH":
+        return { valid: chVat(input.value) };
+      case "CY":
+        return { valid: cyVat(input.value) };
+      case "CZ":
+        return { valid: czVat(input.value) };
+      case "DE":
+        return { valid: deVat(input.value) };
+      case "DK":
+        return { valid: dkVat(input.value) };
+      case "EE":
+        return { valid: eeVat(input.value) };
+      case "EL":
+        return { valid: grVat(input.value) };
+      case "ES":
+        return { valid: esVat(input.value) };
+      case "FI":
+        return { valid: fiVat(input.value) };
+      case "FR":
+        return { valid: frVat(input.value) };
+      case "GB":
+        return { valid: gbVat(input.value) };
+      case "GR":
+        return { valid: grVat(input.value) };
+      case "HR":
+        return { valid: hrVat(input.value) };
+      case "HU":
+        return { valid: huVat(input.value) };
+      case "IE":
+        return { valid: ieVat(input.value) };
+      case "IS":
+        return { valid: isVat(input.value) };
+      case "IT":
+        return { valid: itVat(input.value) };
+      case "LT":
+        return { valid: ltVat(input.value) };
+      case "LU":
+        return { valid: luVat(input.value) };
+      case "LV":
+        return { valid: lvVat(input.value) };
+      case "MT":
+        return { valid: mtVat(input.value) };
+      case "NL":
+        return { valid: nlVat(input.value) };
+      case "NO":
+        return { valid: noVat(input.value) };
+      case "PL":
+        return { valid: plVat(input.value) };
+      case "PT":
+        return { valid: ptVat(input.value) };
+      case "RO":
+        return { valid: roVat(input.value) };
+      case "RS":
+        return { valid: rsVat(input.value) };
+      case "RU":
+        return { valid: ruVat(input.value) };
+      case "SE":
+        return { valid: seVat(input.value) };
+      case "SI":
+        return { valid: siVat(input.value) };
+      case "SK":
+        return { valid: skVat(input.value) };
+      case "VE":
+        return { valid: veVat(input.value) };
+      case "ZA":
+        return { valid: zaVat(input.value) };
+      default:
+        return { valid: true };
     }
   },
 });
