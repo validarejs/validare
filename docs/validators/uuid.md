@@ -1,12 +1,12 @@
 # `uuid` — Validare Validator
 
-Validates that a field contains a valid UUID (versions 1–5).
+Validates that a field contains a valid UUID (versions 3, 4, and 5).
 
 ## Options
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `version` | `1 \| 3 \| 4 \| 5` | all versions | Restrict to a specific UUID version |
+| `version` | `3 \| 4 \| 5` | all versions | Restrict to a specific UUID version |
 | `message` | `string` | locale default | Custom error message |
 
 ## Usage
@@ -30,7 +30,7 @@ const fv = validare(form, {
 
 | Value | Notes |
 |---|---|
-| `"550e8400-e29b-41d4-a716-446655440000"` | Valid UUID v1 |
+| `"550e8400-e29b-41d4-a716-446655440000"` | Valid UUID v4 |
 | `"f47ac10b-58cc-4372-a567-0e02b2c3d479"` | Valid UUID v4 |
 
 ## Invalid Values
@@ -43,4 +43,4 @@ const fv = validare(form, {
 ## Notes
 
 - Empty string (`""`) always returns `valid: true`. Combine with `notEmpty` to require a value.
-- Without `version` option, all UUID versions (1–5) are accepted.
+- Without `version` option, UUID versions 3, 4, and 5 are accepted.

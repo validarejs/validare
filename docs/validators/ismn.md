@@ -28,7 +28,7 @@ const fv = validare(form, {
 
 | Value | Notes |
 |---|---|
-| `"M-230-22107-X"` | Valid ISMN with check character X |
+| `"M-2306-7118-7"` | Valid ISMN-10 |
 | `"979-0-2600-0043-8"` | Valid ISMN-13 |
 
 ## Invalid Values

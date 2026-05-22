@@ -29,7 +29,6 @@ const fv = validare(form, {
 | Value | Notes |
 |---|---|
 | `"IMO 1234567"` | Standard IMO format |
-| `"1234567"` | Without prefix |
 
 ## Invalid Values
 
@@ -41,4 +40,4 @@ const fv = validare(form, {
 ## Notes
 
 - Empty string (`""`) always returns `valid: true`. Combine with `notEmpty` to require a value.
-- Format: `"IMO NNNNNNN"` or `"NNNNNNN"`. The check digit is a weighted sum of the first 6 digits.
+- Format must be `"IMO NNNNNNN"` (the `"IMO "` prefix is required). The check digit is a weighted sum of the first 6 digits.

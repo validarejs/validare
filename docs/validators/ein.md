@@ -35,11 +35,11 @@ const fv = validare(form, {
 
 | Value | Reason |
 |---|---|
-| `"99-9999999"` | Prefix `99` is not assigned |
+| `"07-1234567"` | Prefix `07` is not assigned |
 | `"00-0000000"` | All-zero EIN is invalid |
 
 ## Notes
 
 - Empty string (`""`) always returns `valid: true`. Combine with `notEmpty` to require a value.
 - Format: two-digit prefix + hyphen + seven digits (`XX-XXXXXXX`).
-- Certain prefix codes (00, 07, 08, 09, 17, 18, 19, 28, 29, 49, 69, 70, 78, 79, 89, 96, 97) are not assigned.
+- Certain prefix codes (00, 07, 08, 09, 17, 18, 19, 28, 29, 49, 69, 70, 78, 79, 89, 96, 97) are not assigned. Note: prefix `99` is valid and assigned.
