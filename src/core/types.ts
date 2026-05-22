@@ -1,7 +1,7 @@
 // src/core/types.ts
 
 /** Result of a single field validation run */
-export type ValidationStatus = 'Valid' | 'Invalid' | 'NotValidated';
+export type ValidationStatus = "Valid" | "Invalid" | "NotValidated";
 
 /** Input passed to every validator's validate() method */
 export interface ValidatorInput {
@@ -60,9 +60,12 @@ export interface ElementValidatedPayload {
   valid: boolean;
   result: ValidationStatus;
   /** Per-validator results for this element */
-  validators: Record<string, {
-    valid: boolean;
-    message: string;
-    result: ValidationStatus;
-  }>;
+  validators: Record<
+    string,
+    {
+      valid: boolean;
+      message: string;
+      result: ValidationStatus;
+    }
+  >;
 }

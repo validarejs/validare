@@ -12,7 +12,7 @@ export function createFilter(): Filter {
   return {
     add(name, func) {
       if (!handlers.has(name)) handlers.set(name, []);
-      handlers.get(name)!.push(func);
+      handlers.get(name)?.push(func);
     },
     remove(name, func) {
       const list = handlers.get(name);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { makeInput } from "../helpers";
 import { id } from "../../src/validators/id";
+import { makeInput } from "../helpers";
 
 const v = id();
 
@@ -61,14 +61,12 @@ describe("id", () => {
 
   // CN — 18-digit RIC
   // 11010519980213411X: province=11, prefectural=01, county=05, DOB=19980213, check=10=X ✓
-  it("CN - valid 18 digits", () =>
-    expect(check("11010519980213411X", "CN")).toBe(true));
+  it("CN - valid 18 digits", () => expect(check("11010519980213411X", "CN")).toBe(true));
   // 110105980213411: 15-digit, province=11, DOB=19980213, no checksum ✓
   it("CN - valid 15 digits", () => expect(check("110105980213411", "CN")).toBe(true));
   it("CN - invalid wrong length", () => expect(check("12345678", "CN")).toBe(false));
   // 990105199802134118: province=99 not in adminDivisionCodes → invalid
-  it("CN - invalid admin code", () =>
-    expect(check("990105199802134118", "CN")).toBe(false));
+  it("CN - invalid admin code", () => expect(check("990105199802134118", "CN")).toBe(false));
 
   // CO — NIT
   // 79927398717: sum=1324, 1324%11=4, 11-4=7, last=7 ✓
@@ -203,18 +201,15 @@ describe("id", () => {
   // BOXW530507MNEXNN09: state=NE (valid), date=1953-05-07, gender=M, check=9 ✓
   it("MX - valid", () => expect(check("BOXW530507MNEXNN09", "MX")).toBe(true));
   // CACA530507MNEXNN09: first 4=CACA → blacklisted → invalid
-  it("MX - invalid blacklist name", () =>
-    expect(check("CACA530507MNEXNN09", "MX")).toBe(false));
+  it("MX - invalid blacklist name", () => expect(check("CACA530507MNEXNN09", "MX")).toBe(false));
   // BOXW530507MNEXNN00: check=9 but last=0 → invalid checksum
-  it("MX - invalid checksum", () =>
-    expect(check("BOXW530507MNEXNN00", "MX")).toBe(false));
+  it("MX - invalid checksum", () => expect(check("BOXW530507MNEXNN00", "MX")).toBe(false));
 
   // MY — IC
   // 571014018952: DOB=1957-10-14, POB='01' (valid) ✓
   it("MY - valid", () => expect(check("571014018952", "MY")).toBe(true));
   // 571014178952: POB='17' → in notAvailablePlaces → invalid
-  it("MY - invalid place of birth 17", () =>
-    expect(check("571014178952", "MY")).toBe(false));
+  it("MY - invalid place of birth 17", () => expect(check("571014178952", "MY")).toBe(false));
   // 993214018952: month=32 → invalid date
   it("MY - invalid date", () => expect(check("993214018952", "MY")).toBe(false));
 
@@ -226,7 +221,8 @@ describe("id", () => {
   // 1234567: length=7 < 8 → invalid too short
   it("NL - invalid too short", () => expect(check("1234567", "NL")).toBe(false));
   // sum % 11 === 10 → must reject (was previously incorrectly accepted)
-  it("NL - sum===10 rejects (regression: 100000060)", () => expect(check("100000060", "NL")).toBe(false));
+  it("NL - sum===10 rejects (regression: 100000060)", () =>
+    expect(check("100000060", "NL")).toBe(false));
 
   // NO — Fødselsnummer
   // 01015200193: cd1=9, cd2=3, both match ✓

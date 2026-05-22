@@ -13,10 +13,6 @@ export class Message extends Plugin<MessageOptions> {
   /** Map from field element → message container element */
   private containers = new Map<HTMLElement, HTMLElement>();
 
-  constructor(opts?: MessageOptions) {
-    super(opts);
-  }
-
   private onElementValidated = (payload: unknown): void => {
     if (!this.isEnabled()) return;
     const { element, valid, validators } = payload as ElementValidatedPayload;

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { makeInput } from "../helpers";
 import { vat } from "../../src/validators/vat";
+import { makeInput } from "../helpers";
 
 const v = vat();
 

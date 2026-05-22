@@ -12,7 +12,7 @@ export function createEmitter(): Emitter {
   return {
     on(event, handler) {
       if (!listeners.has(event)) listeners.set(event, new Set());
-      listeners.get(event)!.add(handler);
+      listeners.get(event)?.add(handler);
     },
     off(event, handler) {
       listeners.get(event)?.delete(handler);

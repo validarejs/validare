@@ -1,4 +1,4 @@
-import { Plugin } from '../../core/Plugin';
+import { Plugin } from "../../core/Plugin";
 
 export interface TriggerOptions {
   /** DOM event name or map of field→event. Use false to disable for a field. */
@@ -19,7 +19,7 @@ export class Trigger extends Plugin<TriggerOptions> {
   private timers = new Map<string, ReturnType<typeof setTimeout>>();
 
   constructor(opts?: TriggerOptions) {
-    super({ event: 'input', delay: 0, ...opts });
+    super({ event: "input", delay: 0, ...opts });
   }
 
   private onFieldAdded = (payload: unknown): void => {
@@ -34,9 +34,9 @@ export class Trigger extends Plugin<TriggerOptions> {
 
   private getEventForField(field: string): string | false {
     const { event } = this.opts;
-    if (!event) return 'input';
-    if (typeof event === 'string') return event;
-    return event[field] ?? 'input';
+    if (!event) return "input";
+    if (typeof event === "string") return event;
+    return event[field] ?? "input";
   }
 
   private attachToElements(field: string, elements: HTMLElement[]): void {
@@ -49,7 +49,10 @@ export class Trigger extends Plugin<TriggerOptions> {
         const delay = this.opts.delay ?? 0;
         if (delay > 0) {
           clearTimeout(this.timers.get(field));
-          this.timers.set(field, setTimeout(() => this.core.validateField(field), delay));
+          this.timers.set(
+            field,
+            setTimeout(() => this.core.validateField(field), delay),
+          );
         } else {
           void this.core.validateField(field);
         }
@@ -70,8 +73,8 @@ export class Trigger extends Plugin<TriggerOptions> {
   }
 
   install(): void {
-    this.core.on('core.field.added', this.onFieldAdded);
-    this.core.on('core.field.removed', this.onFieldRemoved);
+    this.core.on("core.field.added", this.onFieldAdded);
+    this.core.on("core.field.removed", this.onFieldRemoved);
 
     // Attach to fields already present when the plugin is registered
     for (const field of Object.keys(this.core.getFields())) {
@@ -80,8 +83,8 @@ export class Trigger extends Plugin<TriggerOptions> {
   }
 
   uninstall(): void {
-    this.core.off('core.field.added', this.onFieldAdded);
-    this.core.off('core.field.removed', this.onFieldRemoved);
+    this.core.off("core.field.added", this.onFieldAdded);
+    this.core.off("core.field.removed", this.onFieldRemoved);
     for (const { element, event, listener } of this.handlers) {
       element.removeEventListener(event, listener);
     }

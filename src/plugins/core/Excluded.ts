@@ -1,4 +1,4 @@
-import { Plugin } from '../../core/Plugin';
+import { Plugin } from "../../core/Plugin";
 
 type ExcludedFn = (field: string, element: HTMLElement) => boolean;
 
@@ -21,15 +21,15 @@ export class Excluded extends Plugin<ExcludedOptions> {
 
     // Default: exclude disabled and hidden inputs
     const input = el as HTMLInputElement;
-    if (input.disabled || input.type === 'hidden') return false;
+    if (input.disabled || input.type === "hidden") return false;
 
     if (!excluded) return defaultValue as boolean;
 
-    if (typeof excluded === 'function') {
+    if (typeof excluded === "function") {
       return excluded(fieldName, el) ? false : (defaultValue as boolean);
     }
 
-    if (typeof excluded === 'string') {
+    if (typeof excluded === "string") {
       return el.matches(excluded) ? false : (defaultValue as boolean);
     }
 
@@ -37,10 +37,10 @@ export class Excluded extends Plugin<ExcludedOptions> {
   };
 
   install(): void {
-    this.core.registerFilter('field-should-validate', this.isExcluded);
+    this.core.registerFilter("field-should-validate", this.isExcluded);
   }
 
   uninstall(): void {
-    this.core.deregisterFilter('field-should-validate', this.isExcluded);
+    this.core.deregisterFilter("field-should-validate", this.isExcluded);
   }
 }

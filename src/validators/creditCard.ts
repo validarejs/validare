@@ -1,8 +1,8 @@
-import type { ValidatorFactory } from '../core/types';
+import type { ValidatorFactory } from "../core/types";
 
 /** Luhn algorithm — https://en.wikipedia.org/wiki/Luhn_algorithm */
 function luhn(value: string): boolean {
-  const digits = value.split('').map(Number);
+  const digits = value.split("").map(Number);
   let sum = 0;
   let isEven = false;
   for (let i = digits.length - 1; i >= 0; i--) {
@@ -19,7 +19,7 @@ function luhn(value: string): boolean {
 
 export const creditCard: ValidatorFactory = () => ({
   validate(input) {
-    const value = input.value.replace(/[\s-]/g, '');
+    const value = input.value.replace(/[\s-]/g, "");
     if (!/^\d+$/.test(value)) return { valid: false };
     return { valid: luhn(value) };
   },

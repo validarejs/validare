@@ -1,7 +1,7 @@
 // src/index.ts
-import { Core } from './core/Core';
-import { type ValidareOptions } from './core/index';
-import * as builtinValidators from './validators/index';
+import { Core } from "./core/Core";
+import type { ValidareOptions } from "./core/index";
+import * as builtinValidators from "./validators/index";
 
 /**
  * Create a Validare instance with all built-in validators pre-registered.
@@ -31,8 +31,8 @@ export function validare(form: HTMLFormElement, options: ValidareOptions): Core 
 }
 
 // Re-export core types and classes
-export { Core } from './core/Core';
-export { Plugin } from './core/Plugin';
+export { Core } from "./core/Core";
+export { Plugin } from "./core/Plugin";
 export type {
   ValidareOptions,
   ValidatorInput,
@@ -44,13 +44,13 @@ export type {
   ValidatorOptions,
   LocaleData,
   ElementValidatedPayload,
-} from './core/index';
+} from "./core/index";
 
 // Re-export validators (for advanced users who want to register manually)
-export * from './validators/index';
+export * from "./validators/index";
 
 // Re-export plugins
-export * from './plugins/index';
+export * from "./plugins/index";
 
 // Re-export locales
-export * from './locales/index';
+export * from "./locales/index";

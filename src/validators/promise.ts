@@ -1,4 +1,4 @@
-import type { ValidatorFactory, ValidatorInput, ValidatorResult } from '../core/types';
+import type { ValidatorFactory, ValidatorInput, ValidatorResult } from "../core/types";
 
 export const promise: ValidatorFactory = () => ({
   validate(input) {

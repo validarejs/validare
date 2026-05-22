@@ -1,4 +1,4 @@
-import { Plugin } from '../../core/Plugin';
+import { Plugin } from "../../core/Plugin";
 
 export interface SubmitButtonOptions {
   /** CSS selector for submit button(s). Defaults to [type="submit"]. */
@@ -27,17 +27,17 @@ export class SubmitButton extends Plugin<SubmitButtonOptions> {
   };
 
   install(): void {
-    this.core.on('core.form.validating', this.onValidating);
-    this.core.on('core.form.valid', this.onDone);
-    this.core.on('core.form.invalid', this.onDone);
-    this.core.on('core.form.notvalidated', this.onDone);
+    this.core.on("core.form.validating", this.onValidating);
+    this.core.on("core.form.valid", this.onDone);
+    this.core.on("core.form.invalid", this.onDone);
+    this.core.on("core.form.notvalidated", this.onDone);
   }
 
   uninstall(): void {
-    this.core.off('core.form.validating', this.onValidating);
-    this.core.off('core.form.valid', this.onDone);
-    this.core.off('core.form.invalid', this.onDone);
-    this.core.off('core.form.notvalidated', this.onDone);
+    this.core.off("core.form.validating", this.onValidating);
+    this.core.off("core.form.valid", this.onDone);
+    this.core.off("core.form.invalid", this.onDone);
+    this.core.off("core.form.notvalidated", this.onDone);
     // Re-enable buttons when uninstalling
     for (const btn of this.getButtons()) btn.disabled = false;
   }

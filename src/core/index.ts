@@ -1,7 +1,7 @@
 // src/core/index.ts
-import { Core } from './Core';
-import type { Plugin } from './Plugin';
-import type { FieldOptions, LocaleData } from './types';
+import { Core } from "./Core";
+import type { Plugin } from "./Plugin";
+import type { FieldOptions, LocaleData } from "./types";
 
 export interface ValidareOptions {
   /** Plugins to register, keyed by name */
@@ -43,8 +43,8 @@ export function validare(form: HTMLFormElement, options: ValidareOptions): Core 
 }
 
 // Re-export everything consumers need from core
-export { Core } from './Core';
-export { Plugin } from './Plugin';
+export { Core } from "./Core";
+export { Plugin } from "./Plugin";
 export type {
   ValidatorInput,
   ValidatorResult,
@@ -55,4 +55,4 @@ export type {
   ValidatorOptions,
   LocaleData,
   ElementValidatedPayload,
-} from './types';
+} from "./types";

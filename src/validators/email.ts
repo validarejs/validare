@@ -1,4 +1,4 @@
-import type { ValidatorFactory } from '../core/types';
+import type { ValidatorFactory } from "../core/types";
 
 // RFC 5321 simplified — covers 99.9% of real email addresses
 const EMAIL_REGEX =

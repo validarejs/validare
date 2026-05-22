@@ -1,4 +1,4 @@
-import type { ValidatorFactory } from '../core/types';
+import type { ValidatorFactory } from "../core/types";
 
 export const digits: ValidatorFactory = () => ({
   validate(input) {

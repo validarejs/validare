@@ -1,5 +1,5 @@
 // src/core/Plugin.ts
-import type { Core } from './Core';
+import type { Core } from "./Core";
 
 export abstract class Plugin<T extends Record<string, unknown> = Record<string, unknown>> {
   /** Options passed by the user when instantiating the plugin */
