@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — greaterThan</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › greaterThan</nav>
+  <h1><code>greaterThan</code></h1>
+  <p>Validates that a numeric value is greater than <code>min</code>.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="val">Value (must be &gt; 0)</label>
+      <input type="number" id="val" name="val" placeholder="5">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: { val: { validators: { greaterThan: { min: 0, inclusive: false } } } },
+      plugins: { trigger: new Trigger({ event: 'blur' }), message: new Message() }
+    });
+  </script>
+</body>
+</html>

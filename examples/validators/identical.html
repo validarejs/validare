@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — identical</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › identical</nav>
+  <h1><code>identical</code></h1>
+  <p>Validates that a field value is identical to another field's value.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="pwd">Password</label>
+      <input type="password" id="pwd" name="pwd" placeholder="Enter password">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <div class="field">
+      <label for="val">Confirm Password</label>
+      <input type="password" id="val" name="val" placeholder="Repeat password">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        pwd: { validators: { notEmpty: {} } },
+        val: { validators: { identical: { compare: 'pwd' } } }
+      },
+      plugins: { trigger: new Trigger({ event: 'blur' }), message: new Message() }
+    });
+  </script>
+</body>
+</html>
