@@ -12,21 +12,21 @@
     <a href="index.html" class="text-blue-600 hover:underline">Plugins</a> › Tailwind
   </nav>
   <h1 class="text-xl font-semibold mb-1">Tailwind Plugin</h1>
-  <p class="text-gray-500 mb-6 text-sm">Applies Tailwind validation classes (<code>border-green-500</code>, <code>border-red-500</code>) and renders error messages below each field.</p>
+  <p class="text-gray-500 mb-6 text-sm">Applies custom Tailwind classes (<code>border-green-500</code>, <code>border-red-500</code>) to inputs on validation.</p>
   <form id="demo" novalidate>
     <div class="mb-4">
       <label for="name" class="block font-medium mb-1">Full Name</label>
       <input type="text" id="name" name="name"
              class="w-full border rounded px-3 py-2 text-sm focus:outline-none"
              placeholder="Jane Doe">
-      <p class="text-red-600 text-xs mt-1 fv-plugins-message-container"></p>
+      <div class="fv-plugins-message-container"></div>
     </div>
     <div class="mb-4">
       <label for="email" class="block font-medium mb-1">Email</label>
       <input type="email" id="email" name="email"
              class="w-full border rounded px-3 py-2 text-sm focus:outline-none"
              placeholder="jane@example.com">
-      <p class="text-red-600 text-xs mt-1 fv-plugins-message-container"></p>
+      <div class="fv-plugins-message-container"></div>
     </div>
     <button type="submit"
             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
@@ -35,7 +35,7 @@
   </form>
   <script src="../../dist/index.umd.js"></script>
   <script>
-    const { validare, Trigger, Tailwind } = Validare;
+    const { validare, Trigger, Tailwind, Message } = Validare;
     validare(document.getElementById('demo'), {
       fields: {
         name:  { validators: { notEmpty: {}, stringLength: { min: 2 } } },
@@ -43,7 +43,8 @@
       },
       plugins: {
         trigger: new Trigger({ event: 'blur' }),
-        ui:      new Tailwind()
+        message: new Message(),
+        ui:      new Tailwind({ validClass: 'border-green-500', invalidClass: 'border-red-500' })
       }
     });
   </script>
