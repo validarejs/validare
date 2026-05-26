@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — uuid</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › uuid</nav>
+  <h1><code>uuid</code></h1>
+  <p>Validates that a field contains a valid UUID (versions 3, 4, and 5 supported).</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="val">UUID</label>
+      <input type="text" id="val" name="val" placeholder="550e8400-e29b-41d4-a716-446655440000">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: { val: { validators: { uuid: {} } } },
+      plugins: { trigger: new Trigger({ event: 'blur' }), message: new Message() }
+    });
+  </script>
+</body>
+</html>
