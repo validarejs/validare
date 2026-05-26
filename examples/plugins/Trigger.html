@@ -32,9 +32,8 @@
         username: { validators: { notEmpty: {}, stringLength: { min: 3, max: 20 } } }
       },
       plugins: {
-        triggerBlur:  new Trigger({ event: 'blur',  fields: ['email'] }),
-        triggerInput: new Trigger({ event: 'input', fields: ['username'] }),
-        message:      new Message()
+        trigger: new Trigger({ event: { email: 'blur', username: 'input' } }),
+        message: new Message()
       }
     });
   </script>
