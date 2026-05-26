@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — choice</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › choice</nav>
+  <h1><code>choice</code></h1>
+  <p>Validates that a minimum (and optionally maximum) number of checkboxes are selected.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label>Pick at least 1 fruit:</label>
+      <label><input type="checkbox" name="val" value="apple"> Apple</label>
+      <label><input type="checkbox" name="val" value="banana"> Banana</label>
+      <label><input type="checkbox" name="val" value="cherry"> Cherry</label>
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        val: { validators: { choice: { min: 1 } } }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'change' }),
+        message: new Message()
+      }
+    });
+  </script>
+</body>
+</html>
