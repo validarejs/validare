@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — ein</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › ein</nav>
+  <h1><code>ein</code></h1>
+  <p>Validates that a field contains a valid US Employer Identification Number (EIN).</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="val">EIN</label>
+      <input type="text" id="val" name="val" placeholder="07-1234567">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: { val: { validators: { ein: {} } } },
+      plugins: { trigger: new Trigger({ event: 'blur' }), message: new Message() }
+    });
+  </script>
+</body>
+</html>
