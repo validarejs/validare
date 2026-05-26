@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — Tailwind Plugin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="max-w-lg mx-auto mt-8 px-4 font-sans">
+  <nav class="mb-4 text-sm text-gray-500">
+    <a href="../index.html" class="text-blue-600 hover:underline">Examples</a> ›
+    <a href="index.html" class="text-blue-600 hover:underline">Plugins</a> › Tailwind
+  </nav>
+  <h1 class="text-xl font-semibold mb-1">Tailwind Plugin</h1>
+  <p class="text-gray-500 mb-6 text-sm">Applies Tailwind validation classes (<code>border-green-500</code>, <code>border-red-500</code>) and renders error messages below each field.</p>
+  <form id="demo" novalidate>
+    <div class="mb-4">
+      <label for="name" class="block font-medium mb-1">Full Name</label>
+      <input type="text" id="name" name="name"
+             class="w-full border rounded px-3 py-2 text-sm focus:outline-none"
+             placeholder="Jane Doe">
+      <p class="text-red-600 text-xs mt-1 fv-plugins-message-container"></p>
+    </div>
+    <div class="mb-4">
+      <label for="email" class="block font-medium mb-1">Email</label>
+      <input type="email" id="email" name="email"
+             class="w-full border rounded px-3 py-2 text-sm focus:outline-none"
+             placeholder="jane@example.com">
+      <p class="text-red-600 text-xs mt-1 fv-plugins-message-container"></p>
+    </div>
+    <button type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">
+      Submit
+    </button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Trigger, Tailwind } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        name:  { validators: { notEmpty: {}, stringLength: { min: 2 } } },
+        email: { validators: { notEmpty: {}, email: {} } }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'blur' }),
+        ui:      new Tailwind()
+      }
+    });
+  </script>
+</body>
+</html>
