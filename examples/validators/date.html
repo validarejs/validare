@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — date</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › date</nav>
+  <h1><code>date</code></h1>
+  <p>Validates that a field contains a valid date matching the given format.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="val">Date (YYYY-MM-DD)</label>
+      <input type="text" id="val" name="val" placeholder="2024-01-15">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        val: { validators: { date: { format: 'YYYY-MM-DD' } } }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'blur' }),
+        message: new Message()
+      }
+    });
+  </script>
+</body>
+</html>

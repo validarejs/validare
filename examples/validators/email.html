@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — email</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › email</nav>
+  <h1><code>email</code></h1>
+  <p>Validates that a field contains a valid email address.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="val">Email</label>
+      <input type="email" id="val" name="val" placeholder="user@example.com">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        val: { validators: { email: {} } }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'blur' }),
+        message: new Message()
+      }
+    });
+  </script>
+</body>
+</html>
