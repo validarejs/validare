@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — SubmitButton Plugin</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Plugins</a> › SubmitButton</nav>
+  <h1><code>SubmitButton</code> Plugin</h1>
+  <p>Disables the submit button while validation is in progress (useful with async validators). Fill both fields to enable submit.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="user@example.com">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <div class="field">
+      <label for="pwd">Password (min 6 chars)</label>
+      <input type="password" id="pwd" name="pwd" placeholder="••••••">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit" id="btn">Submit</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger, SubmitButton } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        email: { validators: { notEmpty: {}, email: {} } },
+        pwd:   { validators: { notEmpty: {}, stringLength: { min: 6 } } }
+      },
+      plugins: {
+        trigger:      new Trigger({ event: 'blur' }),
+        message:      new Message(),
+        submitButton: new SubmitButton()
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — Message Plugin</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Plugins</a> › Message</nav>
+  <h1><code>Message</code> Plugin</h1>
+  <p>Displays validation error messages in the nearest <code>.fv-plugins-message-container</code> element. Submit the form to see messages appear.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Jane Doe">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="jane@example.com">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        name:  { validators: { notEmpty: {}, stringLength: { min: 2 } } },
+        email: { validators: { notEmpty: {}, email: {} } }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'blur' }),
+        message: new Message()
+      }
+    });
+  </script>
+</body>
+</html>

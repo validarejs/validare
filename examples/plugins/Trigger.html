@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — Trigger Plugin</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Plugins</a> › Trigger</nav>
+  <h1><code>Trigger</code> Plugin</h1>
+  <p>Automatically triggers validation on DOM events (<code>blur</code>, <code>input</code>, <code>change</code>). Without this plugin, validation only runs on submit.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="email">Email (validated on blur)</label>
+      <input type="email" id="email" name="email" placeholder="user@example.com">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <div class="field">
+      <label for="username">Username (validated on input)</label>
+      <input type="text" id="username" name="username" placeholder="Type to validate live">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        email:    { validators: { notEmpty: {}, email: {} } },
+        username: { validators: { notEmpty: {}, stringLength: { min: 3, max: 20 } } }
+      },
+      plugins: {
+        triggerBlur:  new Trigger({ event: 'blur',  fields: ['email'] }),
+        triggerInput: new Trigger({ event: 'input', fields: ['username'] }),
+        message:      new Message()
+      }
+    });
+  </script>
+</body>
+</html>

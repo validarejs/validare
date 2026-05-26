@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — Excluded Plugin</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Plugins</a> › Excluded</nav>
+  <h1><code>Excluded</code> Plugin</h1>
+  <p>Skips validation for disabled fields and <code>type="hidden"</code> inputs. The hidden field below has <code>notEmpty</code> configured but is excluded from validation.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Jane Doe">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <input type="hidden" name="token" value="">
+    <div class="field">
+      <label for="city">City (disabled — skipped)</label>
+      <input type="text" id="city" name="city" value="Paris" disabled>
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger, Excluded } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        name:  { validators: { notEmpty: {} } },
+        token: { validators: { notEmpty: { message: 'Token is required (but this field is excluded)' } } },
+        city:  { validators: { notEmpty: { message: 'City is required (but this field is disabled)' } } }
+      },
+      plugins: {
+        trigger:  new Trigger({ event: 'blur' }),
+        message:  new Message(),
+        excluded: new Excluded()
+      }
+    });
+  </script>
+</body>
+</html>

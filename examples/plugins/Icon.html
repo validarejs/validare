@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — Icon Plugin</title>
+  <link rel="stylesheet" href="../shared/style.css">
+  <style>
+    .icon { display: inline-block; margin-left: 0.5rem; font-style: normal; }
+    .icon-valid   { color: #28a745; }
+    .icon-invalid { color: #dc3545; }
+  </style>
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Plugins</a> › Icon</nav>
+  <h1><code>Icon</code> Plugin</h1>
+  <p>Appends a status icon element next to each field. The icon's class changes to reflect the validation state.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="email">Email <span class="icon" id="email-icon"></span></label>
+      <input type="email" id="email" name="email" placeholder="user@example.com">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger, Icon } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        email: { validators: { notEmpty: {}, email: {} } }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'blur' }),
+        message: new Message(),
+        icon: new Icon({
+          valid:   '<span class="icon icon-valid">✓</span>',
+          invalid: '<span class="icon icon-invalid">✗</span>'
+        })
+      }
+    });
+  </script>
+</body>
+</html>
