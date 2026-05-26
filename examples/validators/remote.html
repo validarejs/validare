@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — remote</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › remote</nav>
+  <h1><code>remote</code></h1>
+  <p>Validates by sending the value to a remote endpoint and expecting <code>{ valid: true/false }</code>. This demo uses a simulated delay via <code>promise</code> — swap in the real <code>remote</code> config when you have an endpoint.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="val">Username</label>
+      <input type="text" id="val" name="val" placeholder="Try 'admin' (taken) or anything else">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    /*
+      With a real endpoint, replace the promise validator below with:
+      remote: {
+        url: '/api/check-username',
+        method: 'GET',
+        name: 'username',
+        message: 'That username is already taken',
+      }
+    */
+    validare(document.getElementById('demo'), {
+      fields: {
+        val: {
+          validators: {
+            promise: {
+              message: 'That username is already taken (simulated remote check)',
+              promise: function (input) {
+                return new Promise(function (resolve) {
+                  setTimeout(function () {
+                    resolve({ valid: input.value !== 'admin' });
+                  }, 400);
+                });
+              }
+            }
+          }
+        }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'blur' }),
+        message: new Message()
+      }
+    });
+  </script>
+</body>
+</html>

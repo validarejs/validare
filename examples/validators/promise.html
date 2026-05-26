@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — promise</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Validators</a> › promise</nav>
+  <h1><code>promise</code></h1>
+  <p>Validates using an async custom function. Returns <code>Promise&lt;{ valid: boolean }&gt;</code>. This demo simulates a 500 ms async check.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="val">Username (async availability check)</label>
+      <input type="text" id="val" name="val" placeholder="Try 'taken' or anything else">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        val: {
+          validators: {
+            promise: {
+              message: 'That username is already taken',
+              promise: function (input) {
+                return new Promise(function (resolve) {
+                  setTimeout(function () {
+                    resolve({ valid: input.value !== 'taken' });
+                  }, 500);
+                });
+              }
+            }
+          }
+        }
+      },
+      plugins: {
+        trigger: new Trigger({ event: 'blur' }),
+        message: new Message()
+      }
+    });
+  </script>
+</body>
+</html>
