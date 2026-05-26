@@ -11,13 +11,13 @@
   <h1><code>choice</code></h1>
   <p>Validates that a minimum (and optionally maximum) number of checkboxes are selected.</p>
   <form id="demo" novalidate>
-    <div class="field">
-      <label>Pick at least 1 fruit:</label>
-      <label><input type="checkbox" name="val" value="apple"> Apple</label>
-      <label><input type="checkbox" name="val" value="banana"> Banana</label>
-      <label><input type="checkbox" name="val" value="cherry"> Cherry</label>
+    <fieldset class="field">
+      <legend>Pick at least 1 fruit:</legend>
+      <label><input type="checkbox" id="val-apple" name="val" value="apple"> Apple</label>
+      <label><input type="checkbox" id="val-banana" name="val" value="banana"> Banana</label>
+      <label><input type="checkbox" id="val-cherry" name="val" value="cherry"> Cherry</label>
       <div class="fv-plugins-message-container"></div>
-    </div>
+    </fieldset>
     <button type="submit">Validate</button>
   </form>
   <script src="../../dist/index.umd.js"></script>
