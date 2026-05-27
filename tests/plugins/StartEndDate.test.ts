@@ -147,6 +147,20 @@ describe('StartEndDate', () => {
     expect(result).toBe('Invalid')
   })
 
+  it('treats overflowed date (2025-02-30) as unparseable → Valid (no constraint)', async () => {
+    const form = makeForm({ checkin: '2025-02-30', checkout: '2025-12-01' })
+    const fv = validare(form, {
+      plugins: { dateRange: new StartEndDate(OPTS) },
+      fields: {
+        checkin: { validators: {} },
+        checkout: { validators: {} },
+      },
+    })
+    // Feb 30 doesn't exist — parseDate returns NaN → constraint deferred → Valid
+    const result = await fv.validateField('checkin')
+    expect(result).toBe('Valid')
+  })
+
   it('removes validators on uninstall', async () => {
     const form = makeForm({ checkin: '2025-12-31', checkout: '2025-12-01' })
     const fv = validare(form, {

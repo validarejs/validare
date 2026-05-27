@@ -28,11 +28,13 @@ function parseDate(value: string, format: string): number {
   const mIdx = fParts.indexOf("MM");
   const dIdx = fParts.indexOf("DD");
   if (yIdx < 0 || mIdx < 0 || dIdx < 0) return NaN;
-  return Date.UTC(
-    parseInt(vParts[yIdx], 10),
-    parseInt(vParts[mIdx], 10) - 1,
-    parseInt(vParts[dIdx], 10),
-  );
+  const y = parseInt(vParts[yIdx], 10);
+  const m = parseInt(vParts[mIdx], 10);
+  const d = parseInt(vParts[dIdx], 10);
+  const ts = Date.UTC(y, m - 1, d);
+  const dt = new Date(ts);
+  if (dt.getUTCFullYear() !== y || dt.getUTCMonth() !== m - 1 || dt.getUTCDate() !== d) return NaN;
+  return ts;
 }
 
 export class StartEndDate extends Plugin<StartEndDateOptions> {
