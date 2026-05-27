@@ -98,6 +98,7 @@ Plugins use filters to intercept Core behavior:
 | `validate-pre` | `(Promise<void>)` | SubmitButton — blocks during validation |
 | `field-should-validate` | `(bool, field, validatorName, element)` | Sequence, Excluded |
 | `field-value` | `(value, field, element, validatorName)` | Transformer — transforms value per validator |
+| `element-validated` | `(ElementValidatedPayload)` | Sequence — trims to first failure before rendering |
 
 ### Events Reference
 
