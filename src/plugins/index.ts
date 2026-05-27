@@ -6,6 +6,8 @@ export { StartEndDate } from "./core/StartEndDate";
 export type { StartEndDateOptions } from "./core/StartEndDate";
 export { Sequence } from "./core/Sequence";
 export type { SequenceOptions } from "./core/Sequence";
+export { Transformer } from "./core/Transformer";
+export type { TransformerOptions } from "./core/Transformer";
 export { Excluded } from "./core/Excluded";
 export type { ExcludedOptions } from "./core/Excluded";
 export { Trigger } from "./core/Trigger";
