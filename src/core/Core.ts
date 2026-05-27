@@ -325,7 +325,12 @@ export class Core {
         result: status,
         validators: validatorsMap,
       };
-      this.emit("core.element.validated", payload);
+      const finalPayload = this.filter.execute<ElementValidatedPayload>(
+        "element-validated",
+        payload,
+        [],
+      );
+      this.emit("core.element.validated", finalPayload);
       return status;
     });
   }

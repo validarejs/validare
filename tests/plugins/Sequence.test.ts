@@ -25,6 +25,34 @@ describe("Sequence", () => {
     expect(v2).toHaveBeenCalled();
   });
 
+  it("shows only the first error on the very first validation run", async () => {
+    const form = makeForm({ email: "" });
+    const fv = validare(form, {
+      plugins: { sequence: new Sequence() },
+      fields: {
+        email: {
+          validators: {
+            notEmpty: { message: "Email is required" },
+            email: { message: "Please enter a valid email address" },
+          },
+        },
+      },
+    });
+
+    const messages: string[] = [];
+    fv.on("core.element.validated", (payload) => {
+      const p = payload as import("../../src/core/types").ElementValidatedPayload;
+      for (const result of Object.values(p.validators)) {
+        if (!result.valid && result.message) messages.push(result.message);
+      }
+    });
+
+    await fv.validateField("email");
+
+    expect(messages).toHaveLength(1);
+    expect(messages[0]).toBe("Email is required");
+  });
+
   it("skips later validators after first fails on second run", async () => {
     const form = makeForm({ name: "a" });
     const v1 = vi.fn(() => ({ valid: false }));
