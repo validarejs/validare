@@ -55,4 +55,43 @@ describe("Message", () => {
     fv.destroy();
     expect(form.querySelector(".fv-plugins-message-container")).toBeNull();
   });
+
+  it('shows all error messages by default when multiple validators fail', async () => {
+    const form = makeForm({ val: '' })
+    const fv = validare(form, {
+      plugins: { message: new Message() },
+      fields: {
+        val: {
+          validators: {
+            notEmpty: { message: 'Value is required' },
+            email:    { message: 'Must be a valid email' },
+          },
+        },
+      },
+    })
+    await fv.validateField('val')
+    const container = form.querySelector('.fv-plugins-message-container')
+    const msgs = container?.querySelectorAll('.fv-plugins-message')
+    expect(msgs?.length).toBe(2)
+  })
+
+  it('shows only first error message when first: true', async () => {
+    const form = makeForm({ val: '' })
+    const fv = validare(form, {
+      plugins: { message: new Message({ first: true }) },
+      fields: {
+        val: {
+          validators: {
+            notEmpty: { message: 'Value is required' },
+            email:    { message: 'Must be a valid email' },
+          },
+        },
+      },
+    })
+    await fv.validateField('val')
+    const container = form.querySelector('.fv-plugins-message-container')
+    const msgs = container?.querySelectorAll('.fv-plugins-message')
+    expect(msgs?.length).toBe(1)
+    expect(msgs?.[0].textContent).toBe('Value is required')
+  })
 });

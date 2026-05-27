@@ -6,6 +6,8 @@ export interface MessageOptions {
   container?: string;
   /** CSS class added to the message container element */
   clazz?: string;
+  /** When true, only the first error message is shown per field. Default: false. */
+  first?: boolean;
   [key: string]: unknown;
 }
 
@@ -36,13 +38,13 @@ export class Message extends Plugin<MessageOptions> {
 
     container.innerHTML = "";
     if (!valid) {
-      for (const [, result] of Object.entries(validators)) {
-        if (!result.valid && result.message) {
-          const msg = document.createElement("div");
-          msg.className = "fv-plugins-message";
-          msg.textContent = result.message;
-          container.appendChild(msg);
-        }
+      const failing = Object.values(validators).filter((r) => !r.valid && r.message);
+      const toRender = this.opts.first ? failing.slice(0, 1) : failing;
+      for (const result of toRender) {
+        const msg = document.createElement("div");
+        msg.className = "fv-plugins-message";
+        msg.textContent = result.message;
+        container.appendChild(msg);
       }
     }
   };
