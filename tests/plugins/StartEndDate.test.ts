@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { validare } from '../../src'
 import { StartEndDate } from '../../src/plugins/core/StartEndDate'
 import { makeForm } from '../helpers'
@@ -81,6 +81,59 @@ describe('StartEndDate', () => {
       plugins: {
         dateRange: new StartEndDate({
           format: 'DD/MM/YYYY',
+          startDate: { field: 'checkin', message: 'Invalid' },
+          endDate: { field: 'checkout', message: 'Invalid' },
+        }),
+      },
+      fields: {
+        checkin: { validators: {} },
+        checkout: { validators: {} },
+      },
+    })
+    const result = await fv.validateField('checkin')
+    expect(result).toBe('Invalid')
+  })
+
+  it('cross-revalidation fires even when field result is Invalid', async () => {
+    const form = makeForm({ checkin: '2025-12-31', checkout: '2025-12-01' })
+    const fv = validare(form, {
+      plugins: { dateRange: new StartEndDate(OPTS) },
+      fields: {
+        checkin: { validators: {} },
+        checkout: { validators: {} },
+      },
+    })
+    const spy = vi.spyOn(fv, 'validateField')
+    await fv.validateField('checkin')
+    // After checkin validates (Invalid), checkout should also be revalidated
+    expect(spy).toHaveBeenCalledWith('checkout')
+  })
+
+  it('supports MM/DD/YYYY format', async () => {
+    const form = makeForm({ checkin: '12/31/2025', checkout: '12/01/2025' })
+    const fv = validare(form, {
+      plugins: {
+        dateRange: new StartEndDate({
+          format: 'MM/DD/YYYY',
+          startDate: { field: 'checkin', message: 'Invalid' },
+          endDate: { field: 'checkout', message: 'Invalid' },
+        }),
+      },
+      fields: {
+        checkin: { validators: {} },
+        checkout: { validators: {} },
+      },
+    })
+    const result = await fv.validateField('checkin')
+    expect(result).toBe('Invalid')
+  })
+
+  it('supports YYYY/MM/DD format', async () => {
+    const form = makeForm({ checkin: '2025/12/31', checkout: '2025/12/01' })
+    const fv = validare(form, {
+      plugins: {
+        dateRange: new StartEndDate({
+          format: 'YYYY/MM/DD',
           startDate: { field: 'checkin', message: 'Invalid' },
           endDate: { field: 'checkout', message: 'Invalid' },
         }),

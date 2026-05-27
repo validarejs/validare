@@ -50,8 +50,7 @@ export class StartEndDate extends Plugin<StartEndDateOptions> {
 
   private onFieldValidated = (payload: unknown): void => {
     if (!this.isEnabled()) return;
-    const { field, result } = payload as { field: string; result: string };
-    if (result !== "Valid") return;
+    const { field } = payload as { field: string; result: string };
     // If this field was triggered by a cross-revalidation from this plugin, stop here
     if (this.revalidating.has(field)) return;
 
