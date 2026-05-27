@@ -51,9 +51,13 @@ export class Trigger extends Plugin<TriggerOptions> {
           clearTimeout(this.timers.get(field));
           this.timers.set(
             field,
-            setTimeout(() => this.core.validateField(field), delay),
+            setTimeout(() => {
+              this.core.resetField(field);
+              this.core.validateField(field);
+            }, delay),
           );
         } else {
+          this.core.resetField(field);
           void this.core.validateField(field);
         }
       };
