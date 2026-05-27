@@ -64,8 +64,12 @@ describe("Dependency", () => {
         b: { validators: { notEmpty: {} } },
       },
     });
+    const spy = vi.spyOn(fv, "validateField");
+    await fv.validateField("a");
+    await new Promise((r) => setTimeout(r, 50)); // let async chain settle
 
-    await expect(fv.validateField("a")).resolves.toBeDefined();
+    // Must complete and call validateField a bounded number of times (not infinitely)
+    expect(spy.mock.calls.length).toBeLessThan(10);
   });
 
   it("stops revalidating dependents after uninstall", async () => {
@@ -77,21 +81,12 @@ describe("Dependency", () => {
         zip: { validators: { notEmpty: {} } },
       },
     });
-    fv.destroy();
+    // Uninstall the plugin (without destroying the instance)
+    fv.deregisterPlugin("dep");
 
-    // After destroy, create a fresh spy on the destroyed instance
-    // validateField on a destroyed core still works for fields in memory
-    // but the plugin listener is gone
-    const form2 = makeForm({ country: "US", zip: "90210" });
-    const fv2 = validare(form2, {
-      fields: {
-        country: { validators: { notEmpty: {} } },
-        zip: { validators: { notEmpty: {} } },
-      },
-    });
-    const spy = vi.spyOn(fv2, "validateField");
-    await fv2.validateField("country");
-    // No dependency plugin — zip should NOT have been triggered
+    const spy = vi.spyOn(fv, "validateField");
+    await fv.validateField("country");
+    // Listener is removed — zip must NOT be triggered
     expect(spy).not.toHaveBeenCalledWith("zip");
   });
 });

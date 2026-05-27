@@ -11,7 +11,7 @@ export class Dependency extends Plugin<DependencyOptions> {
 
   private onFieldValidated = (payload: unknown): void => {
     if (!this.isEnabled()) return;
-    const { field } = payload as { field: string };
+    const { field } = payload as { field: string; result: string; elements: HTMLElement[] };
 
     // If this field was triggered by a dependency chain, skip to prevent loops
     if (this.revalidating.has(field)) return;
