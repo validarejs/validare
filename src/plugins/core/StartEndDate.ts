@@ -16,6 +16,7 @@ export interface StartEndDateOptions {
     /** Error message shown on the end date field when end < start */
     message: string;
   };
+  [key: string]: unknown;
 }
 
 /** Parse a date string according to a format string. Returns NaN on failure. */
