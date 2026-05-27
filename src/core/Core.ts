@@ -101,17 +101,21 @@ export class Core {
 
   /** Remove a single validator from a field's validator map. No-op if not found. */
   removeValidator(field: string, validatorName: string): this {
-    const fieldOpts = this.fields[field]
+    const fieldOpts = this.fields[field];
     if (fieldOpts?.validators[validatorName]) {
-      delete fieldOpts.validators[validatorName]
+      delete fieldOpts.validators[validatorName];
+      // Invalidate caches so next validateField re-runs cleanly
+      this.results.delete(field);
+      const vr = this.validatorResults.get(field);
+      if (vr) delete vr[validatorName];
     }
-    return this
+    return this;
   }
 
   /** Remove a validator factory from the global registry. No-op if not found. */
   deregisterValidator(name: string): this {
-    delete this.validators[name]
-    return this
+    delete this.validators[name];
+    return this;
   }
 
   // ─── Fields ───────────────────────────────────────────────────────────────

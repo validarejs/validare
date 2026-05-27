@@ -266,12 +266,15 @@ describe("Core field-value filter", () => {
 
     fv.reset();
     // Register a field-value filter that strips non-digits for the digits validator
-    fv.registerFilter("field-value", (defaultValue: unknown, field: unknown, _el: unknown, validator: unknown) => {
-      if (field === "phone" && validator === "digits") {
-        return (defaultValue as string).replace(/\D/g, "");
-      }
-      return defaultValue;
-    });
+    fv.registerFilter(
+      "field-value",
+      (defaultValue: unknown, field: unknown, _el: unknown, validator: unknown) => {
+        if (field === "phone" && validator === "digits") {
+          return (defaultValue as string).replace(/\D/g, "");
+        }
+        return defaultValue;
+      },
+    );
     const after = await fv.validateField("phone");
     expect(after).toBe("Valid");
   });
