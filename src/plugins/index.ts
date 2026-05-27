@@ -1,5 +1,9 @@
 // src/plugins/index.ts
 // Core plugins
+export { Dependency } from "./core/Dependency";
+export type { DependencyOptions } from "./core/Dependency";
+export { StartEndDate } from "./core/StartEndDate";
+export type { StartEndDateOptions } from "./core/StartEndDate";
 export { Sequence } from "./core/Sequence";
 export type { SequenceOptions } from "./core/Sequence";
 export { Excluded } from "./core/Excluded";
