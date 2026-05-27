@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { Core } from "../../src/core/Core";
 import { Plugin } from "../../src/core/Plugin";
+import { validare } from "../../src";
 import { makeForm } from "../helpers";
 
 let form: HTMLFormElement;
@@ -210,5 +211,68 @@ describe("Core — getValidatorResult", () => {
     core.addField("email", { validators: { ok: {} } });
     await core.validateField("email");
     expect(core.getValidatorResult("email", "ok")).toBe("Valid");
+  });
+});
+
+describe("Core.removeValidator", () => {
+  it("removes a validator from a field so it no longer runs", async () => {
+    const form = makeForm({ email: "notanemail" });
+    const fv = validare(form, {
+      fields: { email: { validators: { notEmpty: {}, email: {} } } },
+    });
+    fv.removeValidator("email", "email");
+    // Only notEmpty remains — 'notanemail' is not empty, so Valid
+    const result = await fv.validateField("email");
+    expect(result).toBe("Valid");
+  });
+
+  it("is a no-op for unknown field or validator", () => {
+    const form = makeForm({ email: "test@test.com" });
+    const fv = validare(form, {
+      fields: { email: { validators: { notEmpty: {} } } },
+    });
+    expect(() => fv.removeValidator("unknown", "notEmpty")).not.toThrow();
+    expect(() => fv.removeValidator("email", "unknown")).not.toThrow();
+  });
+});
+
+describe("Core.deregisterValidator", () => {
+  it("removes a validator factory from the global registry", async () => {
+    const form = makeForm({ val: "" });
+    const fv = validare(form, {
+      fields: { val: { validators: { notEmpty: {} } } },
+    });
+    // Confirm notEmpty runs and flags empty value as Invalid before deregistering
+    const before = await fv.validateField("val");
+    expect(before).toBe("Invalid");
+
+    fv.reset();
+    fv.deregisterValidator("notEmpty");
+    // Factory gone — validator entry remains in field map but has no factory → NotValidated
+    const result = await fv.validateField("val");
+    expect(result).toBe("NotValidated");
+  });
+});
+
+describe("Core field-value filter", () => {
+  it("allows a plugin to transform the value seen by a specific validator", async () => {
+    const form = makeForm({ phone: "(555) 123-4567" });
+    const fv = validare(form, {
+      fields: { phone: { validators: { digits: {} } } },
+    });
+    // Without transform: fails digits
+    const before = await fv.validateField("phone");
+    expect(before).toBe("Invalid");
+
+    fv.reset();
+    // Register a field-value filter that strips non-digits for the digits validator
+    fv.registerFilter("field-value", (defaultValue: unknown, field: unknown, _el: unknown, validator: unknown) => {
+      if (field === "phone" && validator === "digits") {
+        return (defaultValue as string).replace(/\D/g, "");
+      }
+      return defaultValue;
+    });
+    const after = await fv.validateField("phone");
+    expect(after).toBe("Valid");
   });
 });

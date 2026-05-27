@@ -99,6 +99,21 @@ export class Core {
     return this;
   }
 
+  /** Remove a single validator from a field's validator map. No-op if not found. */
+  removeValidator(field: string, validatorName: string): this {
+    const fieldOpts = this.fields[field]
+    if (fieldOpts?.validators[validatorName]) {
+      delete fieldOpts.validators[validatorName]
+    }
+    return this
+  }
+
+  /** Remove a validator factory from the global registry. No-op if not found. */
+  deregisterValidator(name: string): this {
+    delete this.validators[name]
+    return this
+  }
+
   // ─── Fields ───────────────────────────────────────────────────────────────
 
   addField(field: string, options: FieldOptions): this {
@@ -236,7 +251,7 @@ export class Core {
       return Promise.resolve("Valid");
     }
 
-    const value = this.getElementValue(element);
+    const rawValue = this.getElementValue(element);
 
     const promises = activeValidatorNames.map((name) => {
       const factory = this.validators[name];
@@ -248,6 +263,9 @@ export class Core {
           message: "",
         });
       }
+
+      // Allow plugins (e.g. Transformer) to transform the value per validator
+      const value = this.filter.execute<string>("field-value", rawValue, [field, element, name]);
 
       const opts: ValidatorOptions = fieldOpts.validators[name];
       const input: ValidatorInput = {
