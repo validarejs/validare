@@ -9,12 +9,12 @@ It uses a plugin-based architecture with a small core engine.
 
 ## Reference Material
 
-The original FormValidation source code is available in the parent directory:
-- Source: `../2.4.0 - source code/@form-validation/esm/`
-- Examples: `../formvalidation-examples/`
-- Docs mirror: `../docs/`
-- Design spec: `../docs/superpowers/specs/2026-05-20-validare-design.md`
-- Implementation plans: `../docs/superpowers/plans/`
+The original FormValidation source code is available in the sibling directory:
+- Source: `../formvalidation-legacy/2.4.0 - source code/@form-validation/esm/`
+- Examples: `../formvalidation-legacy/formvalidation-examples/`
+- Docs mirror: `../formvalidation-legacy/docs/`
+- Design spec: `docs/superpowers/specs/2026-05-20-validare-design.md`
+- Implementation plans: `docs/superpowers/plans/`
 
 When implementing new validators or plugins, consult the original source first.
 
