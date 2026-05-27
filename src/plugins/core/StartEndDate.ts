@@ -36,13 +36,15 @@ function parseDate(value: string, format: string): number {
 }
 
 export class StartEndDate extends Plugin<StartEndDateOptions> {
+  private readonly _id = Math.random().toString(36).slice(2, 8);
+
   /** Validator key added to the start date field */
   private get startKey(): string {
-    return `__startEndDate_s_${this.opts.startDate.field}`;
+    return `__startEndDate_s_${this._id}_${this.opts.startDate.field}`;
   }
   /** Validator key added to the end date field */
   private get endKey(): string {
-    return `__startEndDate_e_${this.opts.endDate.field}`;
+    return `__startEndDate_e_${this._id}_${this.opts.endDate.field}`;
   }
 
   /** Prevent recursive cross-revalidation */

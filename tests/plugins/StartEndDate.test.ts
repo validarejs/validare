@@ -156,16 +156,16 @@ describe('StartEndDate', () => {
         checkout: { validators: {} },
       },
     })
-    fv.destroy()
-    // After destroy, no cross-field validator — empty validators → Valid
-    const form2 = makeForm({ checkin: '2025-12-31', checkout: '2025-12-01' })
-    const fv2 = validare(form2, {
-      fields: {
-        checkin: { validators: {} },
-        checkout: { validators: {} },
-      },
-    })
-    const result = await fv2.validateField('checkin')
-    expect(result).toBe('Valid')
+    // Confirm constraint is active before uninstall
+    const before = await fv.validateField('checkin')
+    expect(before).toBe('Invalid')
+
+    // Uninstall the plugin on the same instance
+    fv.deregisterPlugin('dateRange')
+    fv.resetField('checkin')
+
+    // After uninstall, cross-field validator removed → Valid
+    const after = await fv.validateField('checkin')
+    expect(after).toBe('Valid')
   })
 })
