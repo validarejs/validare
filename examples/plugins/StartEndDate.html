@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validare — StartEndDate Plugin</title>
+  <link rel="stylesheet" href="../shared/style.css">
+</head>
+<body>
+  <nav><a href="../index.html">Examples</a> › <a href="index.html">Plugins</a> › StartEndDate</nav>
+  <h1><code>StartEndDate</code> Plugin</h1>
+  <p>Ensures a start date is on or before an end date. Both fields cross-revalidate automatically when either changes.</p>
+  <form id="demo" novalidate>
+    <div class="field">
+      <label for="checkin">Check-in date</label>
+      <input type="date" id="checkin" name="checkin">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <div class="field">
+      <label for="checkout">Check-out date</label>
+      <input type="date" id="checkout" name="checkout">
+      <div class="fv-plugins-message-container"></div>
+    </div>
+    <button type="submit">Validate</button>
+  </form>
+  <script src="../../dist/index.umd.js"></script>
+  <script>
+    const { validare, Message, Trigger, StartEndDate } = Validare;
+    validare(document.getElementById('demo'), {
+      fields: {
+        checkin:  { validators: { notEmpty: { message: 'Check-in date is required' } } },
+        checkout: { validators: { notEmpty: { message: 'Check-out date is required' } } }
+      },
+      plugins: {
+        trigger:   new Trigger({ event: 'change' }),
+        message:   new Message(),
+        dateRange: new StartEndDate({
+          format: 'YYYY-MM-DD',
+          startDate: { field: 'checkin',  message: 'Check-in must be on or before check-out' },
+          endDate:   { field: 'checkout', message: 'Check-out must be on or after check-in' }
+        })
+      }
+    });
+  </script>
+</body>
+</html>
