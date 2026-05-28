@@ -73,7 +73,8 @@ describe("AutoFocus", () => {
 
   it("calls onPrefocus callback before focusing", async () => {
     const form = makeForm({ email: "" });
-    const prefocusSpy = vi.fn();
+    const callOrder: string[] = [];
+    const prefocusSpy = vi.fn().mockImplementation(() => callOrder.push("prefocus"));
     const fv = validare(form, {
       plugins: { autoFocus: new AutoFocus({ onPrefocus: prefocusSpy }) },
       fields: {
@@ -81,13 +82,14 @@ describe("AutoFocus", () => {
       },
     });
     const emailInput = form.querySelector('[name="email"]') as HTMLInputElement;
-    emailInput.focus = vi.fn();
+    emailInput.focus = vi.fn().mockImplementation(() => callOrder.push("focus"));
 
     await fv.validate();
 
     expect(prefocusSpy).toHaveBeenCalledOnce();
     expect(prefocusSpy).toHaveBeenCalledWith({ field: "email", element: emailInput });
     expect(emailInput.focus).toHaveBeenCalledOnce();
+    expect(callOrder).toEqual(["prefocus", "focus"]);
   });
 
   it("does nothing when disabled", async () => {
