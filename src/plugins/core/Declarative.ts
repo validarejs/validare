@@ -84,7 +84,7 @@ export class Declarative extends Plugin<DeclarativeOptions> {
     // Only add validators not already in the programmatic config
     const extra: Record<string, ValidatorOptions> = {};
     for (const [v, vopts] of Object.entries(allDeclarative)) {
-      if (!options.validators[v]) extra[v] = vopts;
+      if (!options.validators?.[v]) extra[v] = vopts;
     }
     if (Object.keys(extra).length > 0) {
       this.core.addField(field, { validators: extra });
