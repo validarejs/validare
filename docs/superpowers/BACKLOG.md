@@ -38,7 +38,7 @@
 | Status | Plugin | Descrição |
 |---|---|---|
 | ⬜ Pendente | **Declarative** | Configuração via atributos HTML (`data-fv-*`) sem JavaScript |
-| ⬜ Pendente | **DefaultSubmit** | Submete o form automaticamente quando todos os campos são válidos |
+| ✅ Concluído | **DefaultSubmit** | Submete o form automaticamente quando todos os campos são válidos |
 | ⬜ Pendente | **FieldStatus** | Emite eventos granulares de mudança de status por campo |
 
 ### CSS frameworks adicionais
