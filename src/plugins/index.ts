@@ -14,6 +14,8 @@ export { AutoFocus } from "./core/AutoFocus";
 export type { AutoFocusOptions } from "./core/AutoFocus";
 export { Tooltip } from "./core/Tooltip";
 export type { TooltipOptions, TooltipPlacement, TooltipTrigger } from "./core/Tooltip";
+export { DefaultSubmit } from "./core/DefaultSubmit";
+export type { DefaultSubmitOptions } from "./core/DefaultSubmit";
 export { PasswordStrength } from "./core/PasswordStrength";
 export type { PasswordStrengthOptions } from "./core/PasswordStrength";
 export { Excluded } from "./core/Excluded";
