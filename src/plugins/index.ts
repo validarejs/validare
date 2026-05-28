@@ -16,6 +16,8 @@ export { Tooltip } from "./core/Tooltip";
 export type { TooltipOptions, TooltipPlacement, TooltipTrigger } from "./core/Tooltip";
 export { DefaultSubmit } from "./core/DefaultSubmit";
 export type { DefaultSubmitOptions } from "./core/DefaultSubmit";
+export { FieldStatus } from "./core/FieldStatus";
+export type { FieldStatusOptions, FieldValidationStatus } from "./core/FieldStatus";
 export { PasswordStrength } from "./core/PasswordStrength";
 export type { PasswordStrengthOptions } from "./core/PasswordStrength";
 export { Excluded } from "./core/Excluded";
