@@ -31,7 +31,7 @@
 |---|---|---|
 | ✅ Concluído | **PasswordStrength** | Avalia força de senha com score mínimo configurável |
 | ✅ Concluído | **Tooltip** | Exibe mensagens de erro num tooltip em vez de div abaixo do campo |
-| ⬜ Pendente | **Wizard** | Validação de formulário multi-etapas com navegação entre steps |
+| 🚫 Descartado | **Wizard** | Padrão recomendado: múltiplas instâncias `validare()`, uma por step (ver docs de integração) |
 
 ### Baixa prioridade (da original)
 
