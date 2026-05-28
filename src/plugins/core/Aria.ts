@@ -45,6 +45,20 @@ export class Aria extends Plugin<AriaOptions> {
         }
       }
     } else {
+      // Find and clean up the message container if it exists
+      let container: HTMLElement | null = null;
+      for (const el of elements) {
+        const sibling = el.nextElementSibling as HTMLElement | null;
+        if (sibling?.classList.contains("fv-plugins-message-container")) {
+          container = sibling;
+          break;
+        }
+      }
+      if (container) {
+        container.removeAttribute("id");
+        container.removeAttribute("role");
+      }
+      this.containerIds.delete(field);
       for (const el of elements) {
         el.removeAttribute("aria-describedby");
       }

@@ -90,16 +90,41 @@ describe("Aria", () => {
   it("cleans up aria attributes on field removed", async () => {
     const form = makeForm({ email: "" });
     const fv = validare(form, {
-      plugins: { aria: new Aria() },
+      plugins: { message: new Message(), aria: new Aria() },
       fields: {
         email: { validators: { notEmpty: { message: "Required" } } },
       },
     });
     await fv.validateField("email");
-    fv.removeField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
+    // Both attributes should be set after invalid validation
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+    expect(input.getAttribute("aria-describedby")).toBeTruthy();
+    fv.removeField("email");
     expect(input.getAttribute("aria-invalid")).toBeNull();
     expect(input.getAttribute("aria-describedby")).toBeNull();
+  });
+
+  it("removes role=alert and id from container when field becomes valid", async () => {
+    const form = makeForm({ email: "" });
+    const fv = validare(form, {
+      plugins: { message: new Message(), aria: new Aria() },
+      fields: {
+        email: { validators: { notEmpty: { message: "Required" } } },
+      },
+    });
+    await fv.validateField("email");
+    const container = form.querySelector(".fv-plugins-message-container") as HTMLElement;
+    expect(container.getAttribute("role")).toBe("alert");
+    expect(container.id).toBeTruthy();
+
+    // Reset and re-validate with valid value
+    const input = form.querySelector('[name="email"]') as HTMLInputElement;
+    input.value = "hello";
+    fv.resetField("email");
+    await fv.validateField("email");
+    expect(container.getAttribute("role")).toBeNull();
+    expect(container.id).toBe("");
   });
 
   it("uninstall removes all listeners and clears state", async () => {
