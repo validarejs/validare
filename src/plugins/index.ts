@@ -8,6 +8,8 @@ export { Sequence } from "./core/Sequence";
 export type { SequenceOptions } from "./core/Sequence";
 export { Transformer } from "./core/Transformer";
 export type { TransformerOptions } from "./core/Transformer";
+export { Aria } from "./core/Aria";
+export type { AriaOptions } from "./core/Aria";
 export { Excluded } from "./core/Excluded";
 export type { ExcludedOptions } from "./core/Excluded";
 export { Trigger } from "./core/Trigger";
