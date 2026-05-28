@@ -10,6 +10,8 @@ export { Transformer } from "./core/Transformer";
 export type { TransformerOptions } from "./core/Transformer";
 export { Aria } from "./core/Aria";
 export type { AriaOptions } from "./core/Aria";
+export { AutoFocus } from "./core/AutoFocus";
+export type { AutoFocusOptions } from "./core/AutoFocus";
 export { Excluded } from "./core/Excluded";
 export type { ExcludedOptions } from "./core/Excluded";
 export { Trigger } from "./core/Trigger";
