@@ -39,7 +39,7 @@
 |---|---|---|
 | ⬜ Pendente | **Declarative** | Configuração via atributos HTML (`data-fv-*`) sem JavaScript |
 | ✅ Concluído | **DefaultSubmit** | Submete o form automaticamente quando todos os campos são válidos |
-| ⬜ Pendente | **FieldStatus** | Emite eventos granulares de mudança de status por campo |
+| ✅ Concluído | **FieldStatus** | Emite eventos granulares de mudança de status por campo |
 
 ### CSS frameworks adicionais
 
