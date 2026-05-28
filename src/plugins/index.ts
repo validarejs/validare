@@ -12,6 +12,8 @@ export { Aria } from "./core/Aria";
 export type { AriaOptions } from "./core/Aria";
 export { AutoFocus } from "./core/AutoFocus";
 export type { AutoFocusOptions } from "./core/AutoFocus";
+export { Tooltip } from "./core/Tooltip";
+export type { TooltipOptions, TooltipPlacement, TooltipTrigger } from "./core/Tooltip";
 export { PasswordStrength } from "./core/PasswordStrength";
 export type { PasswordStrengthOptions } from "./core/PasswordStrength";
 export { Excluded } from "./core/Excluded";
