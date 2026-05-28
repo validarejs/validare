@@ -6,7 +6,7 @@ export interface DefaultSubmitOptions {
 
 export class DefaultSubmit extends Plugin<DefaultSubmitOptions> {
   constructor(opts?: DefaultSubmitOptions) {
-    super({ ...opts });
+    super(opts);
     if (opts?.enabled === false) this.disable();
   }
 
@@ -16,7 +16,7 @@ export class DefaultSubmit extends Plugin<DefaultSubmitOptions> {
   };
 
   install(): void {
-    if (this.core.form.querySelectorAll('[type="submit"][name="submit"]').length > 0) {
+    if (this.core.form.querySelectorAll('[name="submit"]').length > 0) {
       throw new Error(
         'DefaultSubmit: do not use "submit" as the name of a submit button — it shadows form.submit()',
       );
