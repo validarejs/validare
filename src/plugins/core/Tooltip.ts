@@ -164,6 +164,6 @@ export class Tooltip extends Plugin<TooltipOptions> {
 
     this.messages.clear();
     this.currentElement = null;
-    this.tip.parentNode?.removeChild(this.tip);
+    if (this.tip) this.tip.parentNode?.removeChild(this.tip);
   }
 }
