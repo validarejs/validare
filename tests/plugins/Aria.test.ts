@@ -62,11 +62,14 @@ describe("Aria", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
+    // After first invalid run, aria-describedby should be set
     expect(input.getAttribute("aria-describedby")).toBeTruthy();
 
+    // Reset cache and re-validate with a valid value
     input.value = "hello";
-    fv.resetField("email");
+    fv.resetField("email"); // clears result cache only, does NOT remove aria attributes
     await fv.validateField("email");
+    // After valid run, aria-describedby must be removed
     expect(input.getAttribute("aria-describedby")).toBeNull();
   });
 
@@ -107,12 +110,18 @@ describe("Aria", () => {
         email: { validators: { notEmpty: { message: "Required" } } },
       },
     });
+    // First validation: field is invalid, aria-invalid should be "true"
     await fv.validateField("email");
-    fv.deregisterPlugin("aria");
-    fv.resetField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const attrBefore = input.getAttribute("aria-invalid");
+    expect(input.getAttribute("aria-invalid")).toBe("true");
+
+    // Uninstall the plugin
+    fv.deregisterPlugin("aria");
+
+    // Reset cache so next validateField actually runs
+    fv.resetField("email");
+    // Re-validate: without Aria plugin, aria-invalid must remain "true" (unchanged)
     await fv.validateField("email");
-    expect(input.getAttribute("aria-invalid")).toBe(attrBefore);
+    expect(input.getAttribute("aria-invalid")).toBe("true");
   });
 });
