@@ -134,13 +134,17 @@ describe("AutoFocus", () => {
         email: { validators: { notEmpty: { message: "Required" } } },
       },
     });
+    // First validate: invalid, focus fires
     await fv.validate();
-    fv.reset();
-
     const emailInput = form.querySelector('[name="email"]') as HTMLInputElement;
     emailInput.focus = vi.fn();
-    await fv.validateField("email");
-    expect(emailInput.focus).not.toHaveBeenCalled();
+
+    // Reset clears Core cache and plugin statuses
+    fv.reset();
+
+    // Re-validate: statuses re-populated, form still invalid, focus fires again
+    await fv.validate();
+    expect(emailInput.focus).toHaveBeenCalledOnce();
   });
 
   it("uninstall stops focus behavior", async () => {

@@ -47,11 +47,16 @@ export class AutoFocus extends Plugin<AutoFocusOptions> {
     this.fieldStatuses.delete(field);
   };
 
+  private onFormValidating = (): void => {
+    this.fieldStatuses.clear();
+  };
+
   private onFormReset = (): void => {
     this.fieldStatuses.clear();
   };
 
   install(): void {
+    this.core.on("core.form.validating", this.onFormValidating);
     this.core.on("core.field.validated", this.onFieldValidated);
     this.core.on("core.form.invalid", this.onFormInvalid);
     this.core.on("core.field.removed", this.onFieldRemoved);
@@ -59,6 +64,7 @@ export class AutoFocus extends Plugin<AutoFocusOptions> {
   }
 
   uninstall(): void {
+    this.core.off("core.form.validating", this.onFormValidating);
     this.core.off("core.field.validated", this.onFieldValidated);
     this.core.off("core.form.invalid", this.onFormInvalid);
     this.core.off("core.field.removed", this.onFieldRemoved);
