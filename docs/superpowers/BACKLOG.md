@@ -22,7 +22,7 @@
 
 | Status | Plugin | Descrição |
 |---|---|---|
-| ⬜ Pendente | **Aria** | Adiciona `aria-invalid` e `aria-describedby` nos campos — acessibilidade básica |
+| ✅ Concluído | **Aria** | Adiciona `aria-invalid` e `aria-describedby` nos campos — acessibilidade básica |
 | ⬜ Pendente | **AutoFocus** | Foca automaticamente no primeiro campo inválido após tentativa de submit |
 
 ### Média prioridade
