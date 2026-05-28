@@ -18,6 +18,8 @@ export { DefaultSubmit } from "./core/DefaultSubmit";
 export type { DefaultSubmitOptions } from "./core/DefaultSubmit";
 export { FieldStatus } from "./core/FieldStatus";
 export type { FieldStatusOptions, FieldValidationStatus } from "./core/FieldStatus";
+export { Declarative } from "./core/Declarative";
+export type { DeclarativeOptions } from "./core/Declarative";
 export { PasswordStrength } from "./core/PasswordStrength";
 export type { PasswordStrengthOptions } from "./core/PasswordStrength";
 export { Excluded } from "./core/Excluded";

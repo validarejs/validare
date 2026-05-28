@@ -19,7 +19,7 @@ export function validare(form: HTMLFormElement, options: ValidareOptions): Core 
 
   if (locale) core.setLocale(locale);
 
-  for (const [field, opts] of Object.entries(fields)) {
+  for (const [field, opts] of Object.entries(fields ?? {})) {
     core.addField(field, opts);
   }
 
