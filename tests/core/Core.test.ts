@@ -227,6 +227,71 @@ describe("Core — validation", () => {
   });
 });
 
+describe("Core — granular events", () => {
+  it("emits core.element.validating before element validates", async () => {
+    const core = new Core(form);
+    core.registerValidator("ok", () => ({ validate: () => ({ valid: true }) }));
+    core.addField("email", { validators: { ok: {} } });
+    const handler = vi.fn();
+    core.on("core.element.validating", handler);
+    await core.validateField("email");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "email" }));
+  });
+
+  it("emits core.element.ignored when no active validators", async () => {
+    const core = new Core(form);
+    core.addField("email", { validators: {} });
+    const handler = vi.fn();
+    core.on("core.element.ignored", handler);
+    await core.validateField("email");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "email" }));
+  });
+
+  it("emits core.element.notvalidated when element result is NotValidated", async () => {
+    const core = new Core(form);
+    core.registerValidator("notval", () => ({ validate: () => ({ valid: false, message: "" }) }));
+    // make the validator unknown so it returns NotValidated
+    core.addField("email", { validators: { unknown_validator_xyz: {} } });
+    const handler = vi.fn();
+    core.on("core.element.notvalidated", handler);
+    await core.validateField("email");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "email" }));
+  });
+
+  it("emits core.validator.validating before each validator runs", async () => {
+    const core = new Core(form);
+    core.registerValidator("ok", () => ({ validate: () => ({ valid: true }) }));
+    core.addField("email", { validators: { ok: {} } });
+    const handler = vi.fn();
+    core.on("core.validator.validating", handler);
+    await core.validateField("email");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "email", validator: "ok" }));
+  });
+
+  it("emits core.validator.notvalidated for unknown validator factory", async () => {
+    const core = new Core(form);
+    core.addField("email", { validators: { ghost_validator: {} } });
+    const handler = vi.fn();
+    core.on("core.validator.notvalidated", handler);
+    await core.validateField("email");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "email", validator: "ghost_validator" }));
+  });
+
+  it("emits core.validator.enabled / core.validator.disabled", () => {
+    const core = new Core(form);
+    core.registerValidator("ok", () => ({ validate: () => ({ valid: true }) }));
+    core.addField("email", { validators: { ok: {} } });
+    const onEnabled = vi.fn();
+    const onDisabled = vi.fn();
+    core.on("core.validator.enabled", onEnabled);
+    core.on("core.validator.disabled", onDisabled);
+    core.disableValidator("email", "ok");
+    expect(onDisabled).toHaveBeenCalledWith({ field: "email", validator: "ok" });
+    core.enableValidator("email", "ok");
+    expect(onEnabled).toHaveBeenCalledWith({ field: "email", validator: "ok" });
+  });
+});
+
 describe("Core — getValidatorResult", () => {
   it("returns NotValidated before any validation", () => {
     const core = new Core(form);

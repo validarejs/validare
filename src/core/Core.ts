@@ -173,13 +173,19 @@ export class Core {
 
   enableValidator(field: string, validator: string): this {
     const v = this.fields[field]?.validators[validator];
-    if (v) v.enabled = true;
+    if (v) {
+      v.enabled = true;
+      this.emit("core.validator.enabled", { field, validator });
+    }
     return this;
   }
 
   disableValidator(field: string, validator: string): this {
     const v = this.fields[field]?.validators[validator];
-    if (v) v.enabled = false;
+    if (v) {
+      v.enabled = false;
+      this.emit("core.validator.disabled", { field, validator });
+    }
     return this;
   }
 
@@ -246,7 +252,10 @@ export class Core {
       return this.filter.execute<boolean>("field-should-validate", true, [field, name, element]);
     });
 
+    this.emit("core.element.validating", { field, element, elements: this.elements[field] });
+
     if (activeValidatorNames.length === 0) {
+      this.emit("core.element.ignored", { field, element, elements: this.elements[field] });
       const payload: ElementValidatedPayload = {
         field,
         element,
@@ -259,11 +268,20 @@ export class Core {
       return Promise.resolve("Valid");
     }
 
+    // Validators skipped by filter (e.g. Excluded, Sequence)
+    const ignoredValidatorNames = allValidatorNames.filter(
+      (name) => !activeValidatorNames.includes(name) && fieldOpts.validators[name].enabled !== false,
+    );
+    for (const name of ignoredValidatorNames) {
+      this.emit("core.validator.notvalidated", { field, validator: name });
+    }
+
     const rawValue = this.getElementValue(element);
 
     const promises = activeValidatorNames.map((name) => {
       const factory = this.validators[name];
       if (!factory) {
+        this.emit("core.validator.notvalidated", { field, validator: name });
         return Promise.resolve({
           name,
           status: "NotValidated" as ValidationStatus,
@@ -283,6 +301,8 @@ export class Core {
         elements: this.elements[field],
         form: this.form,
       };
+
+      this.emit("core.validator.validating", { field, validator: name });
 
       return Promise.resolve(factory().validate(input)).then((result) => {
         const status: ValidationStatus = result.valid ? "Valid" : "Invalid";
@@ -335,6 +355,9 @@ export class Core {
         [],
       );
       this.emit("core.element.validated", finalPayload);
+      if (status === "NotValidated") {
+        this.emit("core.element.notvalidated", { field, element, elements: this.elements[field] });
+      }
       return status;
     });
   }
