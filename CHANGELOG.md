@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`core.validator.validating` event** — Fired before each individual validator runs.
 - **`core.validator.notvalidated` event** — Fired when a validator is skipped or its factory is not registered.
 - **`core.validator.enabled` / `core.validator.disabled` events** — Fired by `enableValidator()` and `disableValidator()` respectively.
+- **`blank` validator** — Validates that a field is empty. The opposite of `notEmpty`. Supports the same `trim` option.
 
 ---
 

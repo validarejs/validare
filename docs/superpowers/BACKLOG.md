@@ -12,7 +12,7 @@
 
 | Status | Validator | Descrição |
 |---|---|---|
-| ⬜ Pendente | `blank` | Oposto de `notEmpty` — válida que o campo está **vazio**. Caso de uso raro mas presente na original |
+| ✅ Concluído | `blank` | Oposto de `notEmpty` — válida que o campo está **vazio**. Caso de uso raro mas presente na original |
 
 ---
 
