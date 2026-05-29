@@ -9,7 +9,7 @@ Inspired by [FormValidation](https://formvalidation.io/) (discontinued).
 - Written in TypeScript — full type safety
 - Zero dependencies — no jQuery, no frameworks
 - Plugin-based architecture — small core, everything else is a plugin
-- **50 built-in validators** — core, financial, identity, encoding, and more
+- **51 built-in validators** — core, financial, identity, encoding, and more
 - CSS framework integrations (Bootstrap 5, Bulma, Tailwind)
 - Sync and async validators
 - Localization support
@@ -18,7 +18,7 @@ Inspired by [FormValidation](https://formvalidation.io/) (discontinued).
 ## Installation
 
 ```bash
-npm install validare
+npm install @validare/core
 ```
 
 ## Quick Start
@@ -32,7 +32,7 @@ npm install validare
 ```
 
 ```js
-import { validare, Trigger, Message, SubmitButton, Bootstrap5 } from 'validare';
+import { validare, Trigger, Message, SubmitButton, Bootstrap5 } from '@validare/core';
 
 const fv = validare(document.getElementById('myForm'), {
   plugins: {
@@ -70,7 +70,7 @@ document.getElementById('myForm').addEventListener('submit', async (e) => {
 ## Browser (CDN)
 
 ```html
-<script src="https://unpkg.com/validare/dist/index.umd.js"></script>
+<script src="https://unpkg.com/@validare/core/dist/index.umd.js"></script>
 <script>
   const { validare, Trigger, Message, Bootstrap5 } = Validare;
 
@@ -90,7 +90,7 @@ document.getElementById('myForm').addEventListener('submit', async (e) => {
 ## Localization
 
 ```js
-import { validare, pt_BR } from 'validare';
+import { validare, pt_BR } from '@validare/core';
 
 const fv = validare(form, {
   locale: pt_BR,
@@ -102,11 +102,12 @@ Available locales: `en_US` (default), `pt_BR`.
 
 ## Validators
 
-### Core (22)
+### Core (23)
 
 | Name | Description |
 |---|---|
 | `notEmpty` | Not empty (supports `trim`) |
+| `blank` | Empty field — opposite of `notEmpty` |
 | `email` | Valid email address |
 | `creditCard` | Credit card number (Luhn) |
 | `date` | Date in specified format |
