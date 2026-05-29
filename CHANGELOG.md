@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **`core.validator.notvalidated` event** — Fired when a validator is skipped or its factory is not registered.
 - **`core.validator.enabled` / `core.validator.disabled` events** — Fired by `enableValidator()` and `disableValidator()` respectively.
 - **`blank` validator** — Validates that a field is empty. The opposite of `notEmpty`. Supports the same `trim` option.
+- **`CharCounter` plugin** — Displays a live character counter inside a `.fv-plugins-char-counter` container element. Updates on every keystroke and adds a configurable CSS class when the count exceeds `max`.
 
 ---
 

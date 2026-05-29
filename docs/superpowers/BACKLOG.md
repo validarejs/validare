@@ -64,7 +64,7 @@
 | Status | Feature | Descrição |
 |---|---|---|
 | 🚫 Descartado | **Debounce plugin** | Coberto pela opção `delay` do plugin `Trigger` — não é necessário plugin separado |
-| ⬜ Pendente | **CharCounter plugin** | Exibe contador de caracteres restantes para campos com `stringLength` |
+| ✅ Concluído | **CharCounter plugin** | Exibe contador de caracteres restantes para campos com `stringLength` |
 | ⬜ Pendente | **Summary plugin** | Renderiza lista de todos os erros do formulário num elemento fixo (topo/rodapé) |
 | ⬜ Pendente | **FieldGroup plugin** | Valida grupos de checkboxes/radios como unidade (ex: "escolha pelo menos 1") |
 | ⬜ Pendente | **Persist plugin** | Salva/restaura estado do formulário no `localStorage` |
