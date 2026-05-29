@@ -216,6 +216,7 @@ export class Core {
     if (!elements || elements.length === 0) {
       this.results.set(field, "NotValidated");
       this.emit("core.field.validated", { field, result: "NotValidated", elements: [] });
+      this.emit("core.field.notvalidated", { field, elements: [] });
       return Promise.resolve("NotValidated");
     }
 
@@ -227,6 +228,9 @@ export class Core {
           : "Valid";
       this.results.set(field, status);
       this.emit("core.field.validated", { field, result: status, elements });
+      if (status === "Valid") this.emit("core.field.valid", { field, elements });
+      else if (status === "Invalid") this.emit("core.field.invalid", { field, elements });
+      else this.emit("core.field.notvalidated", { field, elements });
       return status;
     });
   }

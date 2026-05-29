@@ -152,6 +152,35 @@ describe("Core — validation", () => {
     expect(result).toBe("NotValidated");
   });
 
+  it("emits core.field.valid when field passes", async () => {
+    const core = new Core(form);
+    core.registerValidator("ok", () => ({ validate: () => ({ valid: true }) }));
+    core.addField("email", { validators: { ok: {} } });
+    const handler = vi.fn();
+    core.on("core.field.valid", handler);
+    await core.validateField("email");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "email" }));
+  });
+
+  it("emits core.field.invalid when field fails", async () => {
+    const core = new Core(form);
+    core.registerValidator("fail", () => ({ validate: () => ({ valid: false }) }));
+    core.addField("email", { validators: { fail: {} } });
+    const handler = vi.fn();
+    core.on("core.field.invalid", handler);
+    await core.validateField("email");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "email" }));
+  });
+
+  it("emits core.field.notvalidated when field has no elements", async () => {
+    const core = new Core(form);
+    core.addField("ghost", { validators: {} });
+    const handler = vi.fn();
+    core.on("core.field.notvalidated", handler);
+    await core.validateField("ghost");
+    expect(handler).toHaveBeenCalledWith(expect.objectContaining({ field: "ghost" }));
+  });
+
   it("enableValidator() and disableValidator() affect validation", async () => {
     const core = new Core(form);
     core.registerValidator("fail", () => ({ validate: () => ({ valid: false }) }));
