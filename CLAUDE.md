@@ -116,8 +116,15 @@ Plugins use filters to intercept Core behavior:
 | `core.field.valid` | `{ field, elements }` | After field validates — result is Valid |
 | `core.field.invalid` | `{ field, elements }` | After field validates — result is Invalid |
 | `core.field.notvalidated` | `{ field, elements }` | After field validates — result is NotValidated |
+| `core.element.validating` | `{ field, element, elements }` | Before each DOM element validates |
 | `core.element.validated` | `ElementValidatedPayload` | After each DOM element validates |
+| `core.element.ignored` | `{ field, element, elements }` | Element skipped — no active validators |
+| `core.element.notvalidated` | `{ field, element, elements }` | Element result is NotValidated |
+| `core.validator.validating` | `{ field, validator }` | Before each validator runs |
 | `core.validator.validated` | `{ field, validator, result }` | After each validator runs |
+| `core.validator.notvalidated` | `{ field, validator }` | Validator skipped or factory not found |
+| `core.validator.enabled` | `{ field, validator }` | After enableValidator() |
+| `core.validator.disabled` | `{ field, validator }` | After disableValidator() |
 
 ### `ElementValidatedPayload` Shape
 
