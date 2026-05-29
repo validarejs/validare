@@ -20,6 +20,8 @@ export { FieldStatus } from "./core/FieldStatus";
 export type { FieldStatusOptions, FieldValidationStatus } from "./core/FieldStatus";
 export { Declarative } from "./core/Declarative";
 export type { DeclarativeOptions } from "./core/Declarative";
+export { CharCounter } from "./core/CharCounter";
+export type { CharCounterOptions } from "./core/CharCounter";
 export { PasswordStrength } from "./core/PasswordStrength";
 export type { PasswordStrengthOptions } from "./core/PasswordStrength";
 export { Excluded } from "./core/Excluded";
