@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [Unreleased]
+
+### Added
+
+- **`core.field.valid` / `core.field.invalid` / `core.field.notvalidated` events** — Fired after `core.field.validated`, providing convenience shortcuts for reacting to a specific field outcome without inspecting the payload.
+- **`core.element.validating` event** — Fired before each DOM element begins validation.
+- **`core.element.ignored` event** — Fired when an element is skipped because it has no active validators.
+- **`core.element.notvalidated` event** — Fired when an element's validation result is `NotValidated`.
+- **`core.validator.validating` event** — Fired before each individual validator runs.
+- **`core.validator.notvalidated` event** — Fired when a validator is skipped or its factory is not registered.
+- **`core.validator.enabled` / `core.validator.disabled` events** — Fired by `enableValidator()` and `disableValidator()` respectively.
+
+---
+
 ## [2.2.0] — 2026-05-28
 
 ### Added
