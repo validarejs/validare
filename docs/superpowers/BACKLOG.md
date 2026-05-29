@@ -63,7 +63,7 @@
 
 | Status | Feature | Descrição |
 |---|---|---|
-| ⬜ Pendente | **Debounce plugin** | Adiciona delay antes de disparar validação no `change`/`input` — evita validar a cada tecla |
+| 🚫 Descartado | **Debounce plugin** | Coberto pela opção `delay` do plugin `Trigger` — não é necessário plugin separado |
 | ⬜ Pendente | **CharCounter plugin** | Exibe contador de caracteres restantes para campos com `stringLength` |
 | ⬜ Pendente | **Summary plugin** | Renderiza lista de todos os erros do formulário num elemento fixo (topo/rodapé) |
 | ⬜ Pendente | **FieldGroup plugin** | Valida grupos de checkboxes/radios como unidade (ex: "escolha pelo menos 1") |
