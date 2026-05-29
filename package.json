@@ -1,11 +1,12 @@
 {
-  "name": "validare",
+  "name": "@validare/core",
   "version": "2.3.0",
   "description": "Modern JavaScript form validation library — plugin-based, zero dependencies, TypeScript-first",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -38,7 +39,20 @@
     "form",
     "validation",
     "validator",
-    "typescript"
+    "typescript",
+    "plugin",
+    "form-validation",
+    "html-form",
+    "frontend"
   ],
+  "author": "",
+  "homepage": "https://varantes.github.io/validare-docs/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/varantes/validare.git"
+  },
+  "bugs": {
+    "url": "https://github.com/varantes/validare/issues"
+  },
   "license": "MIT"
 }
