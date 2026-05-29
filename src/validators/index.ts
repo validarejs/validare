@@ -1,5 +1,6 @@
 // src/validators/index.ts
 export { notEmpty } from "./notEmpty";
+export { blank } from "./blank";
 export { digits } from "./digits";
 export { integer } from "./integer";
 export { numeric } from "./numeric";
