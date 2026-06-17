@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [3.0.0] — 2026-06-17
+
+### Breaking Changes
+
+- **CSS class namespace renamed** — All plugin-generated CSS classes changed from `fv-plugins-*` to `vd-plugins-*`. Update any custom CSS or selectors that reference the old names:
+  - `fv-plugins-message-container` → `vd-plugins-message-container`
+  - `fv-plugins-message` → `vd-plugins-message`
+  - `fv-plugins-icon` → `vd-plugins-icon`
+  - `fv-plugins-icon--valid` → `vd-plugins-icon--valid`
+  - `fv-plugins-icon--invalid` → `vd-plugins-icon--invalid`
+  - `fv-plugins-tooltip` → `vd-plugins-tooltip`
+  - `fv-plugins-tooltip--show` → `vd-plugins-tooltip--show`
+  - `fv-plugins-char-counter` → `vd-plugins-char-counter`
+  - `fv-plugins-char-counter--exceeded` → `vd-plugins-char-counter--exceeded`
+  - `fv-plugins-summary` → `vd-plugins-summary`
+- **Declarative plugin attribute prefix renamed** — The default HTML attribute prefix changed from `data-fv-*` to `data-vd-*`. Update all `data-fv-*` attributes in your HTML, or pass `prefix: 'data-fv-'` to the `Declarative` plugin constructor to keep the old prefix.
+
+### Added
+
+- **`MIGRATING.md`** — Migration guide from FormValidation covering all breaking behavior changes (`blank`, `creditCard`, `date`, `email`).
+
+---
+
 ## [2.3.0] — 2026-05-29
 
 ### Added
@@ -95,7 +118,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - TypeScript-first API with full type exports
 - ESM, CJS, and UMD bundles via tsup
 
-[2.2.0]: https://github.com/varantes/validare/compare/v2.1.0...v2.2.0
-[2.1.0]: https://github.com/varantes/validare/compare/v2.0.0...v2.1.0
-[2.0.0]: https://github.com/varantes/validare/compare/v1.0.0...v2.0.0
-[1.0.0]: https://github.com/varantes/validare/releases/tag/v1.0.0
+[3.0.0]: https://github.com/validarejs/validare/compare/v2.3.0...v3.0.0
+[2.3.0]: https://github.com/validarejs/validare/compare/v2.2.0...v2.3.0
+[2.2.0]: https://github.com/validarejs/validare/compare/v2.1.0...v2.2.0
+[2.1.0]: https://github.com/validarejs/validare/compare/v2.0.0...v2.1.0
+[2.0.0]: https://github.com/validarejs/validare/compare/v1.0.0...v2.0.0
+[1.0.0]: https://github.com/validarejs/validare/releases/tag/v1.0.0
