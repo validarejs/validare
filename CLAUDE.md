@@ -7,14 +7,14 @@ This file provides context for AI agents working on the Validare codebase.
 Validare is a TypeScript form validation library inspired by FormValidation (discontinued).
 It uses a plugin-based architecture with a small core engine.
 
+**Current version:** 2.3.0 — 51 validators, 17 plugins, 818 tests.
+
 ## Reference Material
 
 The original FormValidation source code is available in the sibling directory:
 - Source: `../formvalidation-legacy/2.4.0 - source code/@form-validation/esm/`
 - Examples: `../formvalidation-legacy/formvalidation-examples/`
 - Docs mirror: `../formvalidation-legacy/docs/`
-- Design spec: `docs/superpowers/specs/2026-05-20-validare-design.md`
-- Implementation plans: `docs/superpowers/plans/`
 
 When implementing new validators or plugins, consult the original source first.
 
@@ -25,7 +25,7 @@ When implementing new validators or plugins, consult the original source first.
 ```
 validare(form, options)
   → Core instance
-  → registers built-in validators (22)
+  → registers built-in validators (51)
   → calls addField() for each field (queries DOM)
   → calls registerPlugin() for each plugin (install())
   → returns Core
@@ -42,7 +42,7 @@ validare(form, options)
 | `src/core/Core.ts` | Main validation engine |
 | `src/core/index.ts` | `validare()` factory (used by `src/index.ts`) |
 | `src/index.ts` | Public entry point — registers built-in validators |
-| `src/validators/` | 22 validator factories |
+| `src/validators/` | 51 validator factories |
 | `src/plugins/core/` | Core plugins (Trigger, Message, Icon, etc.) |
 | `src/plugins/frameworks/` | CSS framework integrations |
 | `src/locales/` | Locale data packages |
@@ -154,9 +154,7 @@ npm run lint          # Biome lint
 npm run format        # Biome format
 ```
 
-## Adding New Validators (v2 backlog)
-
-See `../docs/superpowers/specs/2026-05-20-validare-design.md` — Roadmap section.
+## Adding New Validators
 
 Steps:
 1. Create `src/validators/<name>.ts` following the ValidatorFactory pattern
@@ -175,6 +173,60 @@ Steps:
 ## Adding New Locales
 
 Steps:
-1. Create `src/locales/<locale_code>.ts` with all 22 validator messages
+1. Create `src/locales/<locale_code>.ts` with all validator messages
 2. Export from `src/locales/index.ts`
 3. Test with the existing locale test pattern in `tests/locales/locales.test.ts`
+
+## Validators (51)
+
+### Core (22)
+`notEmpty`, `email`, `creditCard`, `date`, `digits`, `integer`, `numeric`, `regexp`, `uri`, `identical`, `different`, `between`, `greaterThan`, `lessThan`, `stringLength`, `stringCase`, `choice`, `file`, `callback`, `promise`, `remote`, `ip`
+
+### Format & Encoding (6)
+`base64`, `hex`, `mac`, `bic`, `uuid`, `color`
+
+### Financial (6)
+`iban`, `vat`, `cusip`, `isin`, `sedol`, `grid`
+
+### Publication (4)
+`ean`, `isbn`, `ismn`, `issn`
+
+### Device & Vehicle (5)
+`imei`, `imo`, `meid`, `step`, `vin`
+
+### Tax & Business (4)
+`ein`, `rtn`, `siren`, `siret`
+
+### Identity & Geographic (4)
+`id`, `phone`, `zipCode`, `blank`
+
+## Plugins (17)
+
+### Core (14)
+| Plugin | Description |
+|---|---|
+| `Trigger` | Validates on DOM events |
+| `Message` | Displays error messages in the DOM |
+| `Icon` | Shows validation state icons next to fields |
+| `SubmitButton` | Disables submit button during validation |
+| `Excluded` | Skips disabled/hidden fields |
+| `Sequence` | Stops at first failing validator per field |
+| `Aria` | Adds `aria-invalid` / `aria-describedby` for accessibility |
+| `AutoFocus` | Focuses first invalid field after failed submit |
+| `PasswordStrength` | Evaluates password strength (score 0–4) |
+| `Tooltip` | Displays error messages in a floating tooltip |
+| `DefaultSubmit` | Submits form automatically when all fields are valid |
+| `FieldStatus` | Tracks per-field validation status and fires callbacks |
+| `Declarative` | Configures validators via `data-fv-*` HTML attributes |
+| `CharCounter` | Displays live character counter |
+| `Summary` | Renders consolidated error list in a container |
+| `Dependency` | Prevents validation until dependent fields are validated |
+| `StartEndDate` | Cross-validates a start/end date pair |
+| `Transformer` | Intercepts and normalises field values before validation |
+
+### CSS Frameworks (3)
+| Plugin | Framework |
+|---|---|
+| `Bootstrap5` | Bootstrap 5 (`is-valid` / `is-invalid`) |
+| `Bulma` | Bulma (`is-success` / `is-danger`) |
+| `Tailwind` | Tailwind CSS (configurable utility classes) |
