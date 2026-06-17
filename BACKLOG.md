@@ -24,7 +24,7 @@ Desvios identificados na análise comparativa com a referência original.
 
 | Status | Item | Descrição |
 |---|---|---|
-| ⬜ | **`MIGRATING.md`** | Guia de migração documentando os breaking changes abaixo com exemplos. Crítico antes da publicação no npm. |
+| ✅ | **`MIGRATING.md`** | Guia de migração documentando os breaking changes abaixo com exemplos. Crítico antes da publicação no npm. |
 | ⬜ | **`blank` — semântica** | Na referência, `blank` sempre retorna `valid: true` (placeholder para mensagens do servidor). Em Validare, valida que o campo está vazio (oposto de `notEmpty`). Documentar no guia de migração. |
 | ⬜ | **`creditCard` — tipo de cartão** | A referência valida Luhn + tipo (Visa, Mastercard, Amex…). Validare valida apenas Luhn. Considerar adicionar detecção de tipo como `meta: { type: 'visa' }` no resultado. |
 | ⬜ | **`date` — suporte a hora** | A referência suporta hora, minutos, segundos e AM/PM. Validare valida apenas data simples. Adicionar opções `time?: boolean`, `format` com `HH:MM:SS`. |
