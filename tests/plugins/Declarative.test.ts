@@ -10,10 +10,10 @@ describe("Declarative", () => {
 
   // ── Basic attribute parsing ──────────────────────────────────────────────
 
-  it("enables a validator from data-fv-{validator}='true' attribute", async () => {
+  it("enables a validator from data-vd-{validator}='true' attribute", async () => {
     const form = makeForm({ name: "" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    input.setAttribute("data-fv-not-empty", "true");
+    input.setAttribute("data-vd-not-empty", "true");
 
     const fv = validare(form, {
       plugins: { declarative: new Declarative() },
@@ -21,10 +21,10 @@ describe("Declarative", () => {
     expect(await fv.validate()).toBe("Invalid");
   });
 
-  it("disables a validator when data-fv-{validator}='false'", async () => {
+  it("disables a validator when data-vd-{validator}='false'", async () => {
     const form = makeForm({ name: "" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    input.setAttribute("data-fv-not-empty", "false");
+    input.setAttribute("data-vd-not-empty", "false");
 
     const fv = validare(form, {
       plugins: { declarative: new Declarative() },
@@ -33,11 +33,11 @@ describe("Declarative", () => {
     expect(await fv.validate()).toBe("Valid");
   });
 
-  it("sets a string option from data-fv-{validator}___{option}", async () => {
+  it("sets a string option from data-vd-{validator}___{option}", async () => {
     const form = makeForm({ name: "" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    input.setAttribute("data-fv-not-empty", "true");
-    input.setAttribute("data-fv-not-empty___message", "Name is required");
+    input.setAttribute("data-vd-not-empty", "true");
+    input.setAttribute("data-vd-not-empty___message", "Name is required");
 
     const plugin = new Declarative();
     validare(form, { plugins: { declarative: plugin } });
@@ -49,8 +49,8 @@ describe("Declarative", () => {
   it("coerces numeric option to number", () => {
     const form = makeForm({ name: "ab" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    input.setAttribute("data-fv-string-length", "true");
-    input.setAttribute("data-fv-string-length___min", "3");
+    input.setAttribute("data-vd-string-length", "true");
+    input.setAttribute("data-vd-string-length___min", "3");
 
     const plugin = new Declarative();
     validare(form, { plugins: { declarative: plugin } });
@@ -63,8 +63,8 @@ describe("Declarative", () => {
   it("coerces 'true' and '' attribute values to boolean true", () => {
     const form = makeForm({ name: "" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    input.setAttribute("data-fv-between___inclusive", "true");
-    input.setAttribute("data-fv-between___other", "");
+    input.setAttribute("data-vd-between___inclusive", "true");
+    input.setAttribute("data-vd-between___other", "");
 
     const plugin = new Declarative();
     validare(form, { plugins: { declarative: plugin } });
@@ -77,7 +77,7 @@ describe("Declarative", () => {
   it("coerces 'false' attribute value to boolean false", () => {
     const form = makeForm({ name: "" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    input.setAttribute("data-fv-between___inclusive", "false");
+    input.setAttribute("data-vd-between___inclusive", "false");
 
     const plugin = new Declarative();
     validare(form, { plugins: { declarative: plugin } });
@@ -89,9 +89,9 @@ describe("Declarative", () => {
   it("converts kebab-case attribute names to camelCase", async () => {
     const form = makeForm({ name: "ab" }); // too short
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    // data-fv-string-length → stringLength
-    input.setAttribute("data-fv-string-length", "true");
-    input.setAttribute("data-fv-string-length___min", "3");
+    // data-vd-string-length → stringLength
+    input.setAttribute("data-vd-string-length", "true");
+    input.setAttribute("data-vd-string-length___min", "3");
 
     const fv = validare(form, { plugins: { declarative: new Declarative() } });
     expect(await fv.validate()).toBe("Invalid");
@@ -102,7 +102,7 @@ describe("Declarative", () => {
   it("registers a field purely from declarative attributes (no programmatic config)", async () => {
     const form = makeForm({ email: "not-an-email" });
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    input.setAttribute("data-fv-email", "true");
+    input.setAttribute("data-vd-email", "true");
 
     const fv = validare(form, {
       plugins: { declarative: new Declarative() },
@@ -110,12 +110,12 @@ describe("Declarative", () => {
     expect(await fv.validate()).toBe("Invalid");
   });
 
-  it("uses data-fv-field as fallback field name when name attribute is absent", async () => {
+  it("uses data-vd-field as fallback field name when name attribute is absent", async () => {
     const form = document.createElement("form");
     document.body.appendChild(form);
     const input = document.createElement("input");
-    input.setAttribute("data-fv-field", "custom");
-    input.setAttribute("data-fv-not-empty", "true");
+    input.setAttribute("data-vd-field", "custom");
+    input.setAttribute("data-vd-not-empty", "true");
     input.value = "";
     form.appendChild(input);
 
@@ -129,7 +129,7 @@ describe("Declarative", () => {
     const form = makeForm({ name: "" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
     // Declarative says notEmpty is disabled
-    input.setAttribute("data-fv-not-empty", "false");
+    input.setAttribute("data-vd-not-empty", "false");
 
     const fv = validare(form, {
       plugins: { declarative: new Declarative() },
@@ -144,8 +144,8 @@ describe("Declarative", () => {
     const form = makeForm({ name: "ab" }); // fails stringLength min=3
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
     // Only stringLength in declarative; notEmpty programmatic
-    input.setAttribute("data-fv-string-length", "true");
-    input.setAttribute("data-fv-string-length___min", "3");
+    input.setAttribute("data-vd-string-length", "true");
+    input.setAttribute("data-vd-string-length___min", "3");
 
     const fv = validare(form, {
       plugins: { declarative: new Declarative() },
@@ -259,7 +259,7 @@ describe("Declarative", () => {
     // Add new input with declarative attrs after validare() initialised
     const emailInput = document.createElement("input");
     emailInput.setAttribute("name", "email");
-    emailInput.setAttribute("data-fv-not-empty", "true");
+    emailInput.setAttribute("data-vd-not-empty", "true");
     emailInput.value = ""; // empty — should fail
     form.appendChild(emailInput);
 
@@ -274,7 +274,7 @@ describe("Declarative", () => {
   it("does not add declarative validators after uninstall", async () => {
     const form = makeForm({ name: "" });
     const input = form.querySelector('[name="name"]') as HTMLInputElement;
-    input.setAttribute("data-fv-not-empty", "true");
+    input.setAttribute("data-vd-not-empty", "true");
 
     const fv = validare(form, {
       plugins: { declarative: new Declarative() },

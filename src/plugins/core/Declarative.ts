@@ -2,7 +2,7 @@ import { Plugin } from "../../core/Plugin";
 import type { FieldOptions, ValidatorOptions } from "../../core/types";
 
 export interface DeclarativeOptions {
-  /** Attribute prefix for validators. Default: "data-fv-" */
+  /** Attribute prefix for validators. Default: "data-vd-" */
   prefix?: string;
   /** Map HTML5 attributes (required, type, minlength, etc.) to validators. Default: false */
   html5Input?: boolean;
@@ -14,7 +14,7 @@ export class Declarative extends Plugin<DeclarativeOptions> {
   private addedFields = new Set<string>();
 
   constructor(opts?: DeclarativeOptions) {
-    super({ prefix: "data-fv-", html5Input: false, ...opts });
+    super({ prefix: "data-vd-", html5Input: false, ...opts });
     if (opts?.enabled === false) this.disable();
   }
 
@@ -121,11 +121,11 @@ export class Declarative extends Plugin<DeclarativeOptions> {
     return result;
   }
 
-  /** Parse data-fv-* attributes (and html5 attrs if enabled) from a single element. */
+  /** Parse data-vd-* attributes (and html5 attrs if enabled) from a single element. */
   parseElement(el: HTMLElement): { validators: Record<string, ValidatorOptions> } {
     const prefix = this.opts.prefix as string;
     const html5Input = this.opts.html5Input as boolean;
-    // Escape any regex metacharacters in the prefix (e.g. the hyphens in "data-fv-")
+    // Escape any regex metacharacters in the prefix (e.g. the hyphens in "data-vd-")
     const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const reg = new RegExp(`^${escapedPrefix}([a-z0-9-]+)(___)?([a-z0-9-]+)?$`);
     const opts: Record<string, Record<string, unknown>> = {};
@@ -174,19 +174,19 @@ export class Declarative extends Plugin<DeclarativeOptions> {
       }
     }
 
-    // ── data-fv-* attribute parsing ─────────────────────────────────────────
+    // ── data-vd-* attribute parsing ─────────────────────────────────────────
     for (const attr of Array.from(el.attributes)) {
       const match = reg.exec(attr.name);
       if (!match) continue;
       const validatorName = this.toCamelCase(match[1]);
-      // Skip data-fv-field — it names the field, it's not a validator
+      // Skip data-vd-field — it names the field, it's not a validator
       if (validatorName === "field") continue;
       const optionName = match[3] ? this.toCamelCase(match[3]) : null;
       if (!opts[validatorName]) opts[validatorName] = {};
       if (optionName) {
         opts[validatorName][optionName] = this.normalizeValue(attr.value);
       } else {
-        // Base attribute: data-fv-{validator} — sets enabled flag
+        // Base attribute: data-vd-{validator} — sets enabled flag
         if (opts[validatorName].enabled !== true) {
           opts[validatorName].enabled = attr.value === "" || attr.value === "true";
         }

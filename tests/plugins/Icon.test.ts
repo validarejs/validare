@@ -15,7 +15,7 @@ describe("Icon", () => {
       fields: { email: { validators: { notEmpty: {} } } },
     });
     await fv.validate();
-    const icon = form.querySelector(".fv-plugins-icon");
+    const icon = form.querySelector(".vd-plugins-icon");
     expect(icon).not.toBeNull();
   });
 
@@ -26,9 +26,9 @@ describe("Icon", () => {
       fields: { email: { validators: { notEmpty: {} } } },
     });
     await fv.validate();
-    const icon = form.querySelector(".fv-plugins-icon");
-    expect(icon?.classList.contains("fv-plugins-icon--invalid")).toBe(true);
-    expect(icon?.classList.contains("fv-plugins-icon--valid")).toBe(false);
+    const icon = form.querySelector(".vd-plugins-icon");
+    expect(icon?.classList.contains("vd-plugins-icon--invalid")).toBe(true);
+    expect(icon?.classList.contains("vd-plugins-icon--valid")).toBe(false);
   });
 
   it("adds valid class on successful validation", async () => {
@@ -38,9 +38,9 @@ describe("Icon", () => {
       fields: { email: { validators: { notEmpty: {} } } },
     });
     await fv.validate();
-    const icon = form.querySelector(".fv-plugins-icon");
-    expect(icon?.classList.contains("fv-plugins-icon--valid")).toBe(true);
-    expect(icon?.classList.contains("fv-plugins-icon--invalid")).toBe(false);
+    const icon = form.querySelector(".vd-plugins-icon");
+    expect(icon?.classList.contains("vd-plugins-icon--valid")).toBe(true);
+    expect(icon?.classList.contains("vd-plugins-icon--invalid")).toBe(false);
   });
 
   it("removes icon elements on uninstall", async () => {
@@ -51,6 +51,6 @@ describe("Icon", () => {
     });
     await fv.validate();
     fv.destroy();
-    expect(form.querySelector(".fv-plugins-icon")).toBeNull();
+    expect(form.querySelector(".vd-plugins-icon")).toBeNull();
   });
 });

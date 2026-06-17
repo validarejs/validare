@@ -27,7 +27,7 @@ export class Aria extends Plugin<AriaOptions> {
       let container: HTMLElement | null = null;
       for (const el of elements) {
         const sibling = el.nextElementSibling as HTMLElement | null;
-        if (sibling?.classList.contains("fv-plugins-message-container")) {
+        if (sibling?.classList.contains("vd-plugins-message-container")) {
           container = sibling;
           break;
         }
@@ -49,7 +49,7 @@ export class Aria extends Plugin<AriaOptions> {
       let container: HTMLElement | null = null;
       for (const el of elements) {
         const sibling = el.nextElementSibling as HTMLElement | null;
-        if (sibling?.classList.contains("fv-plugins-message-container")) {
+        if (sibling?.classList.contains("vd-plugins-message-container")) {
           container = sibling;
           break;
         }

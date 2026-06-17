@@ -22,17 +22,17 @@ export class Icon extends Plugin<IconOptions> {
     let icon = this.icons.get(element);
     if (!icon) {
       icon = document.createElement("span");
-      icon.className = "fv-plugins-icon";
+      icon.className = "vd-plugins-icon";
       element.parentNode?.insertBefore(icon, element.nextSibling);
       this.icons.set(element, icon);
     }
 
-    icon.classList.remove("fv-plugins-icon--valid", "fv-plugins-icon--invalid");
+    icon.classList.remove("vd-plugins-icon--valid", "vd-plugins-icon--invalid");
     if (valid) {
-      icon.classList.add("fv-plugins-icon--valid");
+      icon.classList.add("vd-plugins-icon--valid");
       icon.textContent = this.opts.valid ?? "✓";
     } else {
-      icon.classList.add("fv-plugins-icon--invalid");
+      icon.classList.add("vd-plugins-icon--invalid");
       icon.textContent = this.opts.invalid ?? "✗";
     }
   };

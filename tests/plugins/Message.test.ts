@@ -19,7 +19,7 @@ describe("Message", () => {
       },
     });
     await fv.validate();
-    const container = form.querySelector(".fv-plugins-message-container");
+    const container = form.querySelector(".vd-plugins-message-container");
     expect(container).not.toBeNull();
     expect(container?.textContent).toContain("Email is required");
   });
@@ -35,13 +35,13 @@ describe("Message", () => {
     });
 
     await fv.validate();
-    expect(form.querySelector(".fv-plugins-message-container")?.textContent).toContain("Required");
+    expect(form.querySelector(".vd-plugins-message-container")?.textContent).toContain("Required");
 
     // Fix the value and re-validate
     emailInput.value = "something";
     fv.reset();
     await fv.validate();
-    expect(form.querySelector(".fv-plugins-message-container")?.textContent).toBe("");
+    expect(form.querySelector(".vd-plugins-message-container")?.textContent).toBe("");
   });
 
   it("removes message container from DOM on uninstall", async () => {
@@ -51,9 +51,9 @@ describe("Message", () => {
       fields: { email: { validators: { notEmpty: {} } } },
     });
     await fv.validate();
-    expect(form.querySelector(".fv-plugins-message-container")).not.toBeNull();
+    expect(form.querySelector(".vd-plugins-message-container")).not.toBeNull();
     fv.destroy();
-    expect(form.querySelector(".fv-plugins-message-container")).toBeNull();
+    expect(form.querySelector(".vd-plugins-message-container")).toBeNull();
   });
 
   it('shows all error messages by default when multiple validators fail', async () => {
@@ -70,8 +70,8 @@ describe("Message", () => {
       },
     })
     await fv.validateField('val')
-    const container = form.querySelector('.fv-plugins-message-container')
-    const msgs = container?.querySelectorAll('.fv-plugins-message')
+    const container = form.querySelector('.vd-plugins-message-container')
+    const msgs = container?.querySelectorAll('.vd-plugins-message')
     expect(msgs?.length).toBe(2)
   })
 
@@ -89,8 +89,8 @@ describe("Message", () => {
       },
     })
     await fv.validateField('val')
-    const container = form.querySelector('.fv-plugins-message-container')
-    const msgs = container?.querySelectorAll('.fv-plugins-message')
+    const container = form.querySelector('.vd-plugins-message-container')
+    const msgs = container?.querySelectorAll('.vd-plugins-message')
     expect(msgs?.length).toBe(1)
     expect(msgs?.[0].textContent).toBe('Value is required')
   })

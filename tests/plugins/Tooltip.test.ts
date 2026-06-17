@@ -14,7 +14,7 @@ describe("Tooltip", () => {
       plugins: { tooltip: new Tooltip() },
       fields: { email: { validators: {} } },
     });
-    const tip = document.querySelector(".fv-plugins-tooltip");
+    const tip = document.querySelector(".vd-plugins-tooltip");
     expect(tip).toBeTruthy();
     expect(document.body.contains(tip)).toBe(true);
   });
@@ -27,11 +27,11 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(false);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(false);
     input.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(true);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(true);
     expect(tip.textContent).toBe("Email is required");
   });
 
@@ -43,12 +43,12 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
     input.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(true);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(true);
     input.dispatchEvent(new MouseEvent("mouseleave", { bubbles: false }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(false);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(false);
   });
 
   it("shows tooltip on click with click trigger", async () => {
@@ -59,10 +59,10 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
     input.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(true);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(true);
     expect(tip.textContent).toBe("Email is required");
   });
 
@@ -74,13 +74,13 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
     input.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(true);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(true);
 
     document.dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(false);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(false);
   });
 
   it("does not show tooltip for valid field", async () => {
@@ -91,10 +91,10 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
     input.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(false);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(false);
     expect(tip.textContent).toBe("");
   });
 
@@ -106,15 +106,15 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
     input.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(true);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(true);
 
     input.value = "filled";
     fv.resetField("email");
     await fv.validateField("email");
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(false);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(false);
   });
 
   it("cleans up on field removed", async () => {
@@ -125,13 +125,13 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
     input.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(true);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(true);
 
     fv.removeField("email");
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(false);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(false);
   });
 
   it("removes tooltip from document.body on uninstall", () => {
@@ -140,9 +140,9 @@ describe("Tooltip", () => {
       plugins: { tooltip: new Tooltip() },
       fields: { email: { validators: {} } },
     });
-    expect(document.querySelector(".fv-plugins-tooltip")).toBeTruthy();
+    expect(document.querySelector(".vd-plugins-tooltip")).toBeTruthy();
     fv.deregisterPlugin("tooltip");
-    expect(document.querySelector(".fv-plugins-tooltip")).toBeNull();
+    expect(document.querySelector(".vd-plugins-tooltip")).toBeNull();
   });
 
   it("does nothing when disabled", async () => {
@@ -153,10 +153,10 @@ describe("Tooltip", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
 
     input.dispatchEvent(new MouseEvent("mouseenter", { bubbles: false }));
-    expect(tip.classList.contains("fv-plugins-tooltip--show")).toBe(false);
+    expect(tip.classList.contains("vd-plugins-tooltip--show")).toBe(false);
   });
 
   it("applies placement class to tooltip element", () => {
@@ -165,7 +165,7 @@ describe("Tooltip", () => {
       plugins: { tooltip: new Tooltip({ placement: "bottom" }) },
       fields: { email: { validators: {} } },
     });
-    const tip = document.querySelector(".fv-plugins-tooltip") as HTMLElement;
-    expect(tip.classList.contains("fv-plugins-tooltip--bottom")).toBe(true);
+    const tip = document.querySelector(".vd-plugins-tooltip") as HTMLElement;
+    expect(tip.classList.contains("vd-plugins-tooltip--bottom")).toBe(true);
   });
 });

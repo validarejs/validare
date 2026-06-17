@@ -97,7 +97,7 @@ export class Tooltip extends Plugin<TooltipOptions> {
 
     this.currentElement = element;
     this.tip.textContent = message;
-    this.tip.classList.add("fv-plugins-tooltip--show");
+    this.tip.classList.add("vd-plugins-tooltip--show");
 
     const rect = element.getBoundingClientRect();
     const tipRect = this.tip.getBoundingClientRect();
@@ -133,13 +133,13 @@ export class Tooltip extends Plugin<TooltipOptions> {
   private hideTip(): void {
     this.currentElement = null;
     if (!this.tip) return;
-    this.tip.classList.remove("fv-plugins-tooltip--show");
+    this.tip.classList.remove("vd-plugins-tooltip--show");
     this.tip.textContent = "";
   }
 
   install(): void {
     this.tip = document.createElement("div");
-    this.tip.className = `fv-plugins-tooltip fv-plugins-tooltip--${this.opts.placement ?? "top"}`;
+    this.tip.className = `vd-plugins-tooltip vd-plugins-tooltip--${this.opts.placement ?? "top"}`;
     document.body.appendChild(this.tip);
 
     this.core.on("core.element.validated", this.onElementValidated);

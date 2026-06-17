@@ -22,7 +22,7 @@ export class Message extends Plugin<MessageOptions> {
     let container = this.containers.get(element);
     if (!container) {
       container = document.createElement("div");
-      container.className = this.opts.clazz ?? "fv-plugins-message-container";
+      container.className = this.opts.clazz ?? "vd-plugins-message-container";
 
       const customContainer = this.opts.container
         ? document.querySelector(this.opts.container)
@@ -42,7 +42,7 @@ export class Message extends Plugin<MessageOptions> {
       const toRender = this.opts.first ? failing.slice(0, 1) : failing;
       for (const result of toRender) {
         const msg = document.createElement("div");
-        msg.className = "fv-plugins-message";
+        msg.className = "vd-plugins-message";
         msg.textContent = result.message;
         container.appendChild(msg);
       }

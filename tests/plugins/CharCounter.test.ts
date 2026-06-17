@@ -9,7 +9,7 @@ function makeFormWithCounter(value = "") {
       <form id="f">
         <div class="field">
           <input name="bio" value="${value}">
-          <span class="fv-plugins-char-counter"></span>
+          <span class="vd-plugins-char-counter"></span>
         </div>
       </form>
     </body></html>`,
@@ -34,7 +34,7 @@ describe("CharCounter", () => {
       plugins: { charCounter: plugin },
       fields: { bio: { validators: { stringLength: { max: 20 } } } },
     });
-    const counter = form.querySelector(".fv-plugins-char-counter");
+    const counter = form.querySelector(".vd-plugins-char-counter");
     expect(counter?.textContent).toBe("5 / 20");
   });
 
@@ -48,7 +48,7 @@ describe("CharCounter", () => {
     const input = form.querySelector("input") as HTMLInputElement;
     input.value = "hello world";
     input.dispatchEvent(new dom.window.Event("input"));
-    const counter = form.querySelector(".fv-plugins-char-counter");
+    const counter = form.querySelector(".vd-plugins-char-counter");
     expect(counter?.textContent).toBe("11 / 20");
   });
 
@@ -62,8 +62,8 @@ describe("CharCounter", () => {
     const input = form.querySelector("input") as HTMLInputElement;
     input.value = "toolongvalue";
     input.dispatchEvent(new dom.window.Event("input"));
-    const counter = form.querySelector(".fv-plugins-char-counter");
-    expect(counter?.classList.contains("fv-plugins-char-counter--exceeded")).toBe(true);
+    const counter = form.querySelector(".vd-plugins-char-counter");
+    expect(counter?.classList.contains("vd-plugins-char-counter--exceeded")).toBe(true);
   });
 
   it("removes exceeded class when back within max", () => {
@@ -76,8 +76,8 @@ describe("CharCounter", () => {
     const input = form.querySelector("input") as HTMLInputElement;
     input.value = "hi";
     input.dispatchEvent(new dom.window.Event("input"));
-    const counter = form.querySelector(".fv-plugins-char-counter");
-    expect(counter?.classList.contains("fv-plugins-char-counter--exceeded")).toBe(false);
+    const counter = form.querySelector(".vd-plugins-char-counter");
+    expect(counter?.classList.contains("vd-plugins-char-counter--exceeded")).toBe(false);
   });
 
   it("uses custom renderCount function", () => {
@@ -89,7 +89,7 @@ describe("CharCounter", () => {
       plugins: { charCounter: plugin },
       fields: { bio: { validators: { stringLength: { max: 10 } } } },
     });
-    const counter = form.querySelector(".fv-plugins-char-counter");
+    const counter = form.querySelector(".vd-plugins-char-counter");
     expect(counter?.textContent).toBe("8 left");
   });
 
@@ -100,7 +100,7 @@ describe("CharCounter", () => {
       plugins: { charCounter: plugin },
       fields: { bio: { validators: { notEmpty: {} } } },
     });
-    const counter = form.querySelector(".fv-plugins-char-counter");
+    const counter = form.querySelector(".vd-plugins-char-counter");
     expect(counter?.textContent).toBe("");
   });
 
@@ -112,7 +112,7 @@ describe("CharCounter", () => {
       fields: { bio: { validators: { stringLength: { max: 20 } } } },
     });
     fv.destroy();
-    const counter = form.querySelector(".fv-plugins-char-counter");
+    const counter = form.querySelector(".vd-plugins-char-counter");
     expect(counter?.textContent).toBe("");
   });
 });

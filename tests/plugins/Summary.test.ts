@@ -6,7 +6,7 @@ import { Summary } from "../../src/plugins/core/Summary";
 function makeFormWithSummary() {
   const dom = new JSDOM(
     `<html><body>
-      <div class="fv-plugins-summary"></div>
+      <div class="vd-plugins-summary"></div>
       <form id="f">
         <input name="name" value="">
         <input name="email" value="">
@@ -36,7 +36,7 @@ describe("Summary", () => {
       },
     });
     await fv.validate();
-    const container = document.querySelector(".fv-plugins-summary");
+    const container = document.querySelector(".vd-plugins-summary");
     expect(container?.innerHTML).toContain("Name is required");
     expect(container?.innerHTML).toContain("Email is required");
   });
@@ -51,7 +51,7 @@ describe("Summary", () => {
       },
     });
     await fv.validate();
-    const container = document.querySelector(".fv-plugins-summary")!;
+    const container = document.querySelector(".vd-plugins-summary")!;
     expect(container.innerHTML).toContain("Name is required");
 
     const input = form.querySelector("input") as HTMLInputElement;
@@ -70,7 +70,7 @@ describe("Summary", () => {
     });
     await fv.validate();
     fv.reset();
-    const container = document.querySelector(".fv-plugins-summary");
+    const container = document.querySelector(".vd-plugins-summary");
     expect(container?.innerHTML).toBe("");
   });
 
@@ -82,7 +82,7 @@ describe("Summary", () => {
       fields: { name: { validators: { notEmpty: { message: "Name is required" } } } },
     });
     await fv.validate();
-    const container = document.querySelector(".fv-plugins-summary");
+    const container = document.querySelector(".vd-plugins-summary");
     expect(container?.innerHTML).toContain("Errors found:");
   });
 
@@ -96,7 +96,7 @@ describe("Summary", () => {
       fields: { name: { validators: { notEmpty: { message: "Name is required" } } } },
     });
     await fv.validate();
-    const container = document.querySelector(".fv-plugins-summary");
+    const container = document.querySelector(".vd-plugins-summary");
     expect(container?.innerHTML).toContain("[name] Name is required");
   });
 
@@ -108,7 +108,7 @@ describe("Summary", () => {
       fields: { name: { validators: { notEmpty: { message: "Name is required" } } } },
     });
     await fv.validate();
-    const container = document.querySelector(".fv-plugins-summary");
+    const container = document.querySelector(".vd-plugins-summary");
     expect(container?.innerHTML).not.toContain("<p>");
     expect(container?.innerHTML).toContain("Name is required");
   });
@@ -122,7 +122,7 @@ describe("Summary", () => {
     });
     await fv.validate();
     fv.destroy();
-    const container = document.querySelector(".fv-plugins-summary");
+    const container = document.querySelector(".vd-plugins-summary");
     expect(container?.innerHTML).toBe("");
   });
 });

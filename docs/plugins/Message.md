@@ -7,7 +7,7 @@ Displays validation error messages in the DOM next to each field.
 | Option | Type | Default | Description |
 |---|---|---|---|
 | `container` | `string` | `undefined` | CSS selector for a single container to display all messages. Without this, a `<div>` is inserted after each field. |
-| `clazz` | `string` | `"fv-plugins-message-container"` | CSS class applied to each message container element |
+| `clazz` | `string` | `"vd-plugins-message-container"` | CSS class applied to each message container element |
 
 ## Usage
 
@@ -32,6 +32,6 @@ const fv = validare(form, {
 
 ## Notes
 
-- Without `container`, a `<div class="fv-plugins-message-container">` is inserted immediately after each validated field element.
+- Without `container`, a `<div class="vd-plugins-message-container">` is inserted immediately after each validated field element.
 - With `container: '#errors'`, per-field message divs are inserted inside that container instead of after each field element.
 - On `uninstall()` (e.g., `fv.destroy()`), all injected message elements are removed from the DOM.

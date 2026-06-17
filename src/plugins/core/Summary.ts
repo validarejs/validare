@@ -3,7 +3,7 @@ import type { ElementValidatedPayload } from "../../core/types";
 
 export interface SummaryOptions {
   enabled?: boolean;
-  /** CSS selector for the summary container element. Default: ".fv-plugins-summary" */
+  /** CSS selector for the summary container element. Default: ".vd-plugins-summary" */
   container?: string;
   /** Renders the title line. Return empty string to omit. */
   renderTitle?: () => string;
@@ -24,7 +24,7 @@ export class Summary extends Plugin<SummaryOptions> {
   }
 
   private getContainer(): HTMLElement | null {
-    const selector = this.opts.container ?? ".fv-plugins-summary";
+    const selector = this.opts.container ?? ".vd-plugins-summary";
     return document.querySelector<HTMLElement>(selector);
   }
 

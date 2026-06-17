@@ -45,7 +45,7 @@ describe("Aria", () => {
     });
     await fv.validateField("email");
     const input = form.querySelector('[name="email"]') as HTMLInputElement;
-    const container = form.querySelector(".fv-plugins-message-container") as HTMLElement;
+    const container = form.querySelector(".vd-plugins-message-container") as HTMLElement;
     expect(container).toBeTruthy();
     expect(container.id).toBeTruthy();
     expect(input.getAttribute("aria-describedby")).toBe(container.id);
@@ -114,7 +114,7 @@ describe("Aria", () => {
       },
     });
     await fv.validateField("email");
-    const container = form.querySelector(".fv-plugins-message-container") as HTMLElement;
+    const container = form.querySelector(".vd-plugins-message-container") as HTMLElement;
     expect(container.getAttribute("role")).toBe("alert");
     expect(container.id).toBeTruthy();
 

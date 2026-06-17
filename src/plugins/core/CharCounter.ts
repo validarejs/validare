@@ -2,7 +2,7 @@ import { Plugin } from "../../core/Plugin";
 
 export interface CharCounterOptions {
   enabled?: boolean;
-  /** CSS selector for the counter container. Defaults to ".fv-plugins-char-counter" within the field's parent. */
+  /** CSS selector for the counter container. Defaults to ".vd-plugins-char-counter" within the field's parent. */
   container?: string;
   /** Function to format the counter text. Defaults to "current / max". */
   renderCount?: (current: number, max: number) => string;
@@ -48,7 +48,7 @@ export class CharCounter extends Plugin<CharCounterOptions> {
 
     for (const el of elements) {
       // Find the counter container
-      const containerSelector = this.opts.container ?? ".fv-plugins-char-counter";
+      const containerSelector = this.opts.container ?? ".vd-plugins-char-counter";
       const container = (el.closest("div, fieldset, li") ?? el.parentNode)?.querySelector<HTMLElement>(
         containerSelector,
       );
@@ -62,7 +62,7 @@ export class CharCounter extends Plugin<CharCounterOptions> {
         if (!this.isEnabled()) return;
         const current = (el as HTMLInputElement).value?.length ?? 0;
         container.textContent = this.renderCount(current, max);
-        const exceededClass = this.opts.exceededClass ?? "fv-plugins-char-counter--exceeded";
+        const exceededClass = this.opts.exceededClass ?? "vd-plugins-char-counter--exceeded";
         if (current > max) {
           container.classList.add(exceededClass);
         } else {
