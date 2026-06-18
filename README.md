@@ -1,5 +1,10 @@
 # Validare
 
+[![npm](https://img.shields.io/npm/v/@validare/core)](https://www.npmjs.com/package/@validare/core)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@validare/core)](https://bundlephobia.com/package/@validare/core)
+[![license](https://img.shields.io/npm/l/@validare/core)](LICENSE)
+[![tests](https://img.shields.io/badge/tests-818%20passing-brightgreen)](https://github.com/validarejs/validare)
+
 Modern JavaScript form validation library. Plugin-based, zero dependencies, TypeScript-first.
 
 Inspired by [FormValidation](https://formvalidation.io/) (discontinued).

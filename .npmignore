@@ -1,0 +1,16 @@
+src/
+tests/
+docs/
+examples/
+coverage/
+*.test.ts
+tsconfig.json
+tsup.config.ts
+vitest.config.ts
+biome.json
+BACKLOG.md
+CHANGELOG.md
+CLAUDE.md
+CONTRIBUTING.md
+MIGRATING.md
+.github/
