@@ -7,7 +7,31 @@ This file provides context for AI agents working on the Validare codebase.
 Validare is a TypeScript form validation library inspired by FormValidation (discontinued).
 It uses a plugin-based architecture with a small core engine.
 
-**Current version:** 2.3.0 — 51 validators, 17 plugins, 818 tests.
+**Current version:** 3.0.0 — 51 validators, 17 plugins, 818 tests.
+
+## Documentation Requirements
+
+**Always update documentation when implementing any new feature (validator, plugin, locale, or API change).**
+
+After implementing a new feature, you must update all of the following before considering the task complete:
+
+1. **`CHANGELOG.md`** (this repo) — add an entry under the current version or `## [Unreleased]`:
+   - New validators/plugins go under `### Added`
+   - Bug fixes go under `### Fixed`
+   - Breaking changes go under `### Breaking Changes`
+
+2. **`../validare-docs/`** — update the documentation site:
+   - **New validator:** create or update `../validare-docs/validators/<name>.md` with description, options table, and usage example.
+   - **New plugin:** create or update `../validare-docs/plugins/<name>.md` with description, options table, and usage example.
+   - **Validator/plugin count changed:** update the count in `../validare-docs/index.md` (hero features section and footer line).
+   - **Breaking change:** add a migration note to `../validare-docs/changelog.md` and, if significant, to `MIGRATING.md`.
+   - **Any feature:** add the entry to `../validare-docs/changelog.md` mirroring `CHANGELOG.md`.
+
+3. **`CLAUDE.md`** (this file) — if the validator/plugin count changed, update the count in the Project Overview section.
+
+Do not skip documentation updates. A feature without docs is incomplete.
+
+---
 
 ## Reference Material
 
