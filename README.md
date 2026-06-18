@@ -1,11 +1,15 @@
-# Validare
+<p align="center">
+  <img src="https://validarejs.github.io/validare-docs/logo-full.svg" alt="Validare" height="60" />
+</p>
 
-[![npm](https://img.shields.io/npm/v/@validare/core)](https://www.npmjs.com/package/@validare/core)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/@validare/core)](https://bundlephobia.com/package/@validare/core)
-[![license](https://img.shields.io/npm/l/@validare/core)](LICENSE)
-[![tests](https://img.shields.io/badge/tests-818%20passing-brightgreen)](https://github.com/validarejs/validare)
+<p align="center">
+  <a href="https://www.npmjs.com/package/@validare/core"><img src="https://img.shields.io/npm/v/@validare/core" alt="npm"></a>
+  <a href="https://bundlephobia.com/package/@validare/core"><img src="https://img.shields.io/bundlephobia/minzip/@validare/core" alt="bundle size"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/npm/l/@validare/core" alt="license"></a>
+  <a href="https://github.com/validarejs/validare"><img src="https://img.shields.io/badge/tests-818%20passing-brightgreen" alt="tests"></a>
+</p>
 
-Modern JavaScript form validation library. Plugin-based, zero dependencies, TypeScript-first.
+<p align="center">Modern JavaScript form validation library. Plugin-based, zero dependencies, TypeScript-first.</p>
 
 Inspired by [FormValidation](https://formvalidation.io/) (discontinued).
 
