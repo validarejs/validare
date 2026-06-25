@@ -7,7 +7,7 @@ This file provides context for AI agents working on the Validare codebase.
 Validare is a TypeScript form validation library inspired by FormValidation (discontinued).
 It uses a plugin-based architecture with a small core engine.
 
-**Current version:** 3.0.0 — 51 validators, 17 plugins, 818 tests.
+**Current version:** 3.0.0 — 51 validators, 17 plugins, 845 tests.
 
 ## Documentation Requirements
 

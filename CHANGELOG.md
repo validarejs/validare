@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [3.1.0] — 2026-06-24
+
+### Added
+
+- **`creditCard` — card type detection** — result now includes `meta: { type: string }` with the detected network (`visa`, `mastercard`, `amex`, `discover`, `dinersclub`, `jcb`, `maestro`, `unionpay`, `unknown`).
+- **`date` — time support** — format string now accepts time tokens: `HH` (24h hour), `hh` (12h hour), `mm` (minutes), `ss` (seconds), `A` (AM/PM). Example: `"MM/DD/YYYY HH:mm"` or `"MM/DD/YYYY hh:mm A"`.
+- **`email` — `multiple` option** — accepts `multiple: true` to validate a comma- or semicolon-separated list of email addresses.
+- **`remote` — `cache` option** — accepts `cache: true` to memoize server responses per (url, value) pair within a validator instance, avoiding redundant network requests on repeated keystrokes.
+
+---
+
 ## [3.0.0] — 2026-06-17
 
 ### Breaking Changes

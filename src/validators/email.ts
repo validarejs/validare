@@ -6,6 +6,12 @@ const EMAIL_REGEX =
 
 export const email: ValidatorFactory = () => ({
   validate(input) {
+    const opts = input.options as { multiple?: boolean };
+    if (opts.multiple) {
+      const addresses = input.value.split(/[,;]/).map((s) => s.trim()).filter(Boolean);
+      if (addresses.length === 0) return { valid: false };
+      return { valid: addresses.every((addr) => EMAIL_REGEX.test(addr)) };
+    }
     return { valid: EMAIL_REGEX.test(input.value) };
   },
 });

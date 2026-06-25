@@ -25,10 +25,10 @@ Desvios identificados na análise comparativa com a referência original.
 | Status | Item | Descrição |
 |---|---|---|
 | ✅ | **`MIGRATING.md`** | Guia de migração documentando os breaking changes abaixo com exemplos. Crítico antes da publicação no npm. |
-| ⬜ | **`blank` — semântica** | Na referência, `blank` sempre retorna `valid: true` (placeholder para mensagens do servidor). Em Validare, valida que o campo está vazio (oposto de `notEmpty`). Documentar no guia de migração. |
-| ⬜ | **`creditCard` — tipo de cartão** | A referência valida Luhn + tipo (Visa, Mastercard, Amex…). Validare valida apenas Luhn. Considerar adicionar detecção de tipo como `meta: { type: 'visa' }` no resultado. |
-| ⬜ | **`date` — suporte a hora** | A referência suporta hora, minutos, segundos e AM/PM. Validare valida apenas data simples. Adicionar opções `time?: boolean`, `format` com `HH:MM:SS`. |
-| ⬜ | **`email` — múltiplos emails** | A referência suporta `multiple: true` (emails separados por vírgula/ponto-e-vírgula) e `requireGlobalDomain`. Validare aceita apenas um email. |
+| ✅ | **`blank` — semântica** | Na referência, `blank` sempre retorna `valid: true` (placeholder para mensagens do servidor). Em Validare, valida que o campo está vazio (oposto de `notEmpty`). Documentar no guia de migração. |
+| ✅ | **`creditCard` — tipo de cartão** | A referência valida Luhn + tipo (Visa, Mastercard, Amex…). Validare valida apenas Luhn. Considerar adicionar detecção de tipo como `meta: { type: 'visa' }` no resultado. |
+| ✅ | **`date` — suporte a hora** | A referência suporta hora, minutos, segundos e AM/PM. Validare valida apenas data simples. Adicionar opções `time?: boolean`, `format` com `HH:MM:SS`. |
+| ✅ | **`email` — múltiplos emails** | A referência suporta `multiple: true` (emails separados por vírgula/ponto-e-vírgula) e `requireGlobalDomain`. Validare aceita apenas um email. |
 
 ---
 
@@ -37,10 +37,10 @@ Desvios identificados na análise comparativa com a referência original.
 | Status | Item | Descrição |
 |---|---|---|
 | ✅ | `blank` | Oposto de `notEmpty` — valida que o campo está vazio. |
-| ⬜ | **`email` com `multiple`** | Adicionar opção `multiple?: boolean` para validar listas de emails separadas por vírgula ou ponto-e-vírgula. |
-| ⬜ | **`creditCard` com tipo** | Retornar tipo detectado no resultado: `{ valid: true, meta: { type: 'visa' } }`. Permite exibir logo do cartão em tempo real. |
-| ⬜ | **`date` com hora** | Adicionar suporte a `HH:MM:SS` e AM/PM para inputs `datetime-local`. |
-| ⬜ | **`remote` com cache** | Opção `cache?: boolean` para evitar requests repetidos com o mesmo valor. Caso de uso: validação de username/email disponíveis. |
+| ✅ | **`email` com `multiple`** | Adicionar opção `multiple?: boolean` para validar listas de emails separadas por vírgula ou ponto-e-vírgula. |
+| ✅ | **`creditCard` com tipo** | Retornar tipo detectado no resultado: `{ valid: true, meta: { type: 'visa' } }`. Permite exibir logo do cartão em tempo real. |
+| ✅ | **`date` com hora** | Adicionar suporte a `HH:MM:SS` e AM/PM para inputs `datetime-local`. |
+| ✅ | **`remote` com cache** | Opção `cache?: boolean` para evitar requests repetidos com o mesmo valor. Caso de uso: validação de username/email disponíveis. |
 
 ---
 

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://validarejs.github.io/validare-docs/logo-full.svg" alt="Validare" height="60" />
+  <img src="https://validare.js.org/logo-full.svg" alt="Validare" height="60" />
 </p>
 
 <p align="center">

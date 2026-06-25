@@ -22,6 +22,8 @@ export interface ValidatorResult {
   valid: boolean;
   /** If provided, overrides the message from locale/options */
   message?: string;
+  /** Extra data returned by the validator (e.g. detected credit card type) */
+  meta?: Record<string, unknown>;
 }
 
 /** The object returned by a ValidatorFactory */
