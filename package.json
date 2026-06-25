@@ -1,6 +1,6 @@
 {
   "name": "@validare/core",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Modern JavaScript form validation library — plugin-based, zero dependencies, TypeScript-first",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -12,6 +12,21 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
+    },
+    "./validators": {
+      "types": "./dist/validators/index.d.ts",
+      "import": "./dist/validators/index.js",
+      "require": "./dist/validators/index.cjs"
+    },
+    "./plugins": {
+      "types": "./dist/plugins/index.d.ts",
+      "import": "./dist/plugins/index.js",
+      "require": "./dist/plugins/index.cjs"
+    },
+    "./locales": {
+      "types": "./dist/locales/index.d.ts",
+      "import": "./dist/locales/index.js",
+      "require": "./dist/locales/index.cjs"
     }
   },
   "files": [

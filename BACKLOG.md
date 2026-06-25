@@ -71,9 +71,9 @@ Desvios identificados na análise comparativa com a referência original.
 | ✅ | **Declarative** | Configuração via atributos HTML (`data-fv-*`) sem JavaScript. |
 | ✅ | **DefaultSubmit** | Submete o form automaticamente quando todos os campos são válidos. |
 | ✅ | **FieldStatus** | Emite eventos granulares de mudança de status por campo. |
-| ⬜ | **Bootstrap4** | Integração com Bootstrap 4. |
-| ⬜ | **Foundation** | Integração com Foundation. |
-| ⬜ | **Semantic** | Integração com Semantic UI. |
+| 🚫 | **Bootstrap4** | Framework em declínio, baixa demanda. |
+| 🚫 | **Foundation** | Framework em declínio, baixa demanda. |
+| 🚫 | **Semantic** | Framework em declínio, baixa demanda. |
 
 ### Integrações 3rd party (fora do escopo)
 
@@ -155,7 +155,7 @@ A referência tem 39 locales. Validare tem 2 (en_US, pt_BR). Adicionar conforme 
 
 | Status | Item | Descrição |
 |---|---|---|
-| ⬜ | **Subpath exports** | Adicionar `"@validare/core/validators"` e `"@validare/core/plugins"` ao `exports` do `package.json` para melhor tree-shaking em bundlers que não fazem isso automaticamente. |
+| ✅ | **Subpath exports** | Adicionar `"@validare/core/validators"` e `"@validare/core/plugins"` ao `exports` do `package.json` para melhor tree-shaking em bundlers que não fazem isso automaticamente. |
 
 ---
 

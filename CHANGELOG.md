@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [3.2.0] — 2026-06-25
+
+### Added
+
+- **Subpath exports** — `@validare/core/validators`, `@validare/core/plugins`, and `@validare/core/locales` are now individually importable, enabling better tree-shaking in bundlers that don't apply it automatically:
+  ```js
+  import { notEmpty, email } from '@validare/core/validators';
+  import { Message, Trigger } from '@validare/core/plugins';
+  import { pt_BR } from '@validare/core/locales';
+  ```
+
+---
+
 ## [3.1.0] — 2026-06-24
 
 ### Added
